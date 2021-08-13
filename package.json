@@ -1,0 +1,10 @@
+{
+  "name": "v-page-generator",
+  "version": "0.0.1",
+  "description": "Vue3.0 动态页面设计生成器",
+  "main": "index.js",
+  "repository": "https://github.com/xfy520/v-page-generator.git",
+  "author": "xfy520 <longzinziyan@gmail.com>",
+  "license": "MIT",
+  "private": false
+}
