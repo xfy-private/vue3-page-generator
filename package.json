@@ -6,5 +6,67 @@
   "repository": "https://github.com/xfy520/v-page-generator.git",
   "author": "xfy520 <longzinziyan@gmail.com>",
   "license": "MIT",
-  "private": false
+  "private": false,
+  "scripts": {
+    "se": "vue-cli-service serve --fix",
+    "bd": "vue-cli-service build",
+    "svg": "svgo -f src/icons/svg --config=src/icons/svgo.yml",
+    "br": "webpack-bundle-analyzer --port 8123 dist/stats.json",
+    "hs": "http-server ./dist -p 8888 -c-1"
+  },
+  "dependencies": {
+    "ant-design-vue": "2.2.6",
+    "axios": "^0.21.1",
+    "vue": "3.1.0",
+    "vue-i18n": "^9.1.7",
+    "vue-router": "4.0.11"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.26.1",
+    "@vue/cli-plugin-typescript": "^4.5.6",
+    "@vue/cli-service": "^4.5.6",
+    "@vue/compiler-sfc": "3.1.0",
+    "autoprefixer": "9.5.0",
+    "compression-webpack-plugin": "^6.0.2",
+    "conventional-changelog-cli": "2.1.0",
+    "conventional-changelog-custom-config": "0.3.1",
+    "eslint": "^7.24.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-vue": "^7.13.0",
+    "http-server": "^13.0.0",
+    "less": "^4.1.1",
+    "less-loader": "7.0.0",
+    "portfinder": "1.0.28",
+    "postcss-import": "13.0.0",
+    "prettier": "2.1.2",
+    "stylelint": "^13.13.1",
+    "stylelint-config-prettier": "8.0.2",
+    "stylelint-config-standard": "20.0.0",
+    "stylelint-order": "4.1.0",
+    "svg-sprite-loader": "^6.0.9",
+    "terser-webpack-plugin": "^4.2.2",
+    "typescript": "^4.0.3",
+    "webpack-bundle-analyzer": "^3.9.0",
+    "webpack-cdn-plugin": "^3.3.1"
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "bugs": {
+    "url": "https://github.com/xfy520/v-page-generator/issues"
+  },
+  "homepage": "https://github.com/xfy520/v-page-generator",
+  "changelog": {
+    "bugsUrl": "https://github.com/xfy520/v-page-generator",
+    "emojis": true,
+    "authorName": false,
+    "authorEmail": false
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  }
 }
