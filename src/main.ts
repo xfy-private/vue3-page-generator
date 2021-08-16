@@ -5,7 +5,9 @@ import App from './App.vue';
 import router from './router';
 import VueI18n from './language';
 
-import 'ant-design-vue/dist/antd.css';
+if (process.env.NODE_ENV !== 'production') {
+  require('ant-design-vue/dist/antd.css');
+}
 
 const app = createApp(App);
 app.component('svg-icon', SvgIcon);

@@ -1,8 +1,15 @@
 <template>
-  <div v-if="isExternal" :style="styleExternalIcon" class="svg-external-icon svg-icon"></div>
-  <svg v-else :class="svgClass" aria-hidden="true">
-    <use :xlink:href="iconName" />
-  </svg>
+  <div v-if="isExternal" :style="styleExternalIcon" class="svg-external-icon svg-icon">
+    <slot></slot>
+  </div>
+  <span v-else style="display: flex; align-items: center; cursor: pointer;">
+    <svg :class="svgClass" aria-hidden="true">
+      <use :xlink:href="iconName" />
+    </svg>
+    <span v-if="slots.default" style="margin-left: 0.3rem;">
+      <slot></slot>
+    </span>
+  </span>
 </template>
 
 <script lang="ts">
@@ -24,7 +31,7 @@ export default defineComponent({
       default: 1,
     },
   },
-  setup(props) {
+  setup(props, { slots }) {
     const isExternal = computed(() => /^(https?:|mailto:|tel:)/.test(props.name));
     const iconName = computed(() => `#icon-${props.name}`);
     const svgClass = computed(() => {
@@ -42,6 +49,7 @@ export default defineComponent({
       iconName,
       svgClass,
       styleExternalIcon,
+      slots,
     };
   },
 });
@@ -54,7 +62,6 @@ export default defineComponent({
   overflow: hidden;
   vertical-align: -0.15rem;
   fill: currentColor;
-  cursor: pointer;
 }
 
 .svg-external-icon {

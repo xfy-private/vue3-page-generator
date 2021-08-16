@@ -86,7 +86,7 @@ module.exports = {
       .end();
 
     //只在生产环境生效
-    if (process.env.VUE_APP_CURRENTMODE === 'production') {
+    if (process.env.NODE_ENV === 'production') {
       config.externals(externals);
       config.optimization.minimize(true);
       config.optimization.splitChunks({
@@ -170,7 +170,7 @@ module.exports = {
   },
   css: {
     // 是否使用css分离插件 ExtractTextPlugin
-    extract: true,
+    extract: process.env.NODE_ENV === 'production',
     // 开启 CSS source maps?
     sourceMap: false,
     loaderOptions: {
