@@ -1,104 +1,131 @@
-.top {
-  height: 2.5rem;
-  border-bottom: 1px solid #f1e8e8;
+.main {
+  height: 100vh;
 
-  .top-left, .top-right {
+  .ant-tabs-tab {
+    height: 2.5rem;
+  }
+
+  .ant-tabs-bar {
+    margin: 0;
     text-align: center;
-    border-right: 1px solid #f1e8e8;
+  }
 
-    .ant-tabs, .ant-tabs-tab {
-      height: 2.5rem;
+  .ant-tabs-top-content {
+    height: calc(100vh - 2.5rem);
+    padding: 0.5rem;
+    overflow: hidden;
+
+    .ant-tabs-tabpane {
+      height: calc(100vh - 2.5rem);
+      overflow: auto;
+      scrollbar-width: none;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
     }
   }
 
-  .top-center {
-    display: flex;
-    padding: 0 1rem;
-    align-items: center;
-    color: #00afff;
-    border-right: 1px solid #f1e8e8;
-    justify-content: space-between;
-
-    .title {
-      font-size: 1rem;
-      font-weight: 750;
-    }
-  }
-}
-
-.bottom {
-  height: calc(100vh - 2.5rem);
-
-  .bottom-left {
-    padding: 0.5rem 1rem;
+  .left {
     border-right: 1px solid #f1e8e8;
 
     .icon-title {
       margin: 0.5rem 0;
     }
 
-    .components-item {
-      padding: 0.3rem 1rem;
+    .components-draggable {
+      row-gap: 0.6rem;
+    }
+
+    .component-item {
+      padding: 0.3rem;
       cursor: move;
       background-color: #efefef99;
       border: 1px solid #efefef99;
       user-select: none;
 
       &:hover, &:active {
-        color: red;
+        color: #787be8;
         border: 1px dashed #787be8;
       }
     }
   }
 
-  .bottom-center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .center {
+    .center-top {
+      display: flex;
+      height: 2.5rem;
+      padding: 0 0.5rem;
+      color: #00afff;
+      border-bottom: 1px solid #f1e8e8;
+      align-items: center;
+      justify-content: space-between;
 
-    .window {
-      position: relative;
-      width: 95%;
-      height: 90%;
-      padding: 2rem 3rem;
-      border-radius: 0.6rem;
-      box-shadow: 0 0 0.7rem 0.1rem rgb(0 0 0 / 20%);
-
-      &::before, &::after {
-        position: absolute;
-        border-radius: 50%;
-        content: "";
+      .title {
+        font-size: 1rem;
+        font-weight: 750;
       }
+    }
 
-      &::before {
-        top: 50%;
-        left: 1rem;
-        width: 0.5rem;
-        height: 0.5rem;
-        background-color: #aeaeae;
-        transform: translateY(-50%);
-      }
+    .center-bottom {
+      display: flex;
+      height: calc(100vh - 2.5rem);
+      align-items: center;
+      justify-content: center;
 
-      &::after {
-        top: 50%;
-        right: 0.5rem;
-        width: 2rem;
-        height: 2rem;
-        cursor: pointer;
-        border: 1px solid #aeaeae;
-        transform: translateY(-50%);
-        box-shadow: inset 0 1px 0 rgb(255 255 255 / 10%), 0 1px 2px rgb(0 0 0 / 30%), 0 0 10px rgb(0 0 0 / 15%);
-      }
-
-      .content {
+      .window {
         position: relative;
-        height: 100%;
-        background-color: rgba(239, 239, 239, 0.6);
+        width: 95%;
+        height: 90%;
+        padding: 2rem 3rem;
+        border-radius: 0.6rem;
+        box-shadow: 0 0 0.7rem 0.1rem rgb(0 0 0 / 20%);
+
+        .turn {
+          position: absolute;
+          top: 0.2rem;
+          left: 50%;
+          color: #00afff;
+          cursor: pointer;
+          transform: translateX(-50%);
+        }
+
+        &::before, &::after {
+          position: absolute;
+          border-radius: 50%;
+          content: "";
+        }
+
+        &::before {
+          top: 50%;
+          left: 1rem;
+          width: 0.5rem;
+          height: 0.5rem;
+          background-color: #aeaeae;
+          transform: translateY(-50%);
+        }
+
+        &::after {
+          top: 50%;
+          right: 0.5rem;
+          width: 2rem;
+          height: 2rem;
+          cursor: pointer;
+          border: 1px solid #aeaeae;
+          transform: translateY(-50%);
+          box-shadow: inset 0 1px 0 rgb(255 255 255 / 10%), 0 1px 2px rgb(0 0 0 / 30%), 0 0 10px rgb(0 0 0 / 15%);
+        }
+
+        .content {
+          position: relative;
+          height: 100%;
+          background-color: rgba(239, 239, 239, 0.6);
+        }
       }
     }
   }
 
-  .bottom-right {
+  .right {
     border-left: 1px solid #f1e8e8;
   }
 }

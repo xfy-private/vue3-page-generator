@@ -110,7 +110,8 @@ module.exports = {
     //设置别名
     config.resolve.alias
       .set('@', resolve('src'))
-      .set('@api', resolve('src/api/api')) // 接口地址
+      .set('@types', resolve('src/types'))
+      .set('@utils', resolve('src/utils'))
       .set('@assets', resolve('src/assets'))
       .set('@components', resolve('src/components'));
   },
