@@ -95,7 +95,7 @@ type antFormItemType = {
 } & baseFormItemType;
 
 type baseItemType = {
-  type: 'input' | 'select' | 'switch' | 'number' | 'radio'
+  type: 'input' | 'select' | 'switch' | 'number' | 'radio' | 'event'
 }
 
 type antInputType = {
@@ -347,18 +347,18 @@ type antSelectComponentType = {
       value: boolean
     } & baseItemType;
     dropdownRender: {
-      value: ((_arg: { menuNode: VNode, _props: VNodeProps }) => VNode) | Slot
+      value: ((_arg: { menuNode: VNode, _props: VNodeProps }) => VNode) | Slot | null
     } & baseItemType;
     dropdownStyle: {
       value: {
       [key: string]: number | string
-    }
-  } & baseItemType;
+      }
+    } & baseItemType;
     dropdownMenuStyle: {
       value: {
-      [key: string]: number | string
-    }
-  } & baseItemType;
+        [key: string]: number | string
+      }
+    } & baseItemType;
     filterOption: {
       value: boolean | ((_inputValue: unknown, _option: unknown) => void)
     } & baseItemType;
@@ -366,22 +366,22 @@ type antSelectComponentType = {
       value: string | Array<string>
     } & baseItemType;
     getPopupContainer: {
-      value: () => HTMLElement
+      value: null | (() => HTMLElement)
     } & baseItemType;
     labelInValue: {
       value: boolean
     } & baseItemType;
     maxTagCount: {
-      value: number
+      value: number | null
     } & baseItemType;
     maxTagPlaceholder: {
-      value: Slot | ((_omittedValues: unknown) => unknown)
+      value: null | Slot | ((_omittedValues: unknown) => unknown)
     } & baseItemType;
     maxTagTextLength: {
-      value: number
+      value: number | null
     } & baseItemType;
     mode: {
-      value: 'multiple' | 'tags' | 'combobox'
+      value: 'multiple' | 'tags' | 'combobox' | null
     } & baseItemType;
     notFoundContent: {
       value: string | Slot
@@ -405,16 +405,16 @@ type antSelectComponentType = {
       value: 'large' | 'default' | 'small'
     } & baseItemType;
     suffixIcon: {
-      value: VNode | Slot
+      value: VNode | Slot | null
     } & baseItemType;
     removeIcon: {
-      value: VNode | Slot
+      value: VNode | Slot | null
     } & baseItemType;
     clearIcon: {
-      value: VNode | Slot
+      value: VNode | Slot | null
     } & baseItemType;
     menuItemSelectedIcon: {
-      value: VNode | Slot
+      value: VNode | Slot | null
     } & baseItemType;
     tokenSeparators: {
       value: Array<string>
@@ -424,7 +424,7 @@ type antSelectComponentType = {
       value: string, label: string, disabled: string, key: string, title: string}>
     } & baseItemType;
     option: {
-      value: Slot
+      value: Slot | null
     } & baseItemType;
     defaultOpen: {
       value: boolean
@@ -454,13 +454,14 @@ type antTreeSelectComponentType = {
     } & baseItemType;
     dropdownStyle: {
       value: {
-      [key: string]: string | number
-    }} & baseItemType;
+        [key: string]: string | number
+      }
+    } & baseItemType;
     filterTreeNode: {
       value: boolean | ((_inputValue: string, _treeNode: unknown) => boolean)
     } & baseItemType;
     getPopupContainer: {
-      value: () => HTMLElement
+      value: null | (() => HTMLElement)
     } & baseItemType;
     labelInValue: {
       value: boolean
@@ -469,10 +470,10 @@ type antTreeSelectComponentType = {
       value: (_node: string) => unknown
     } & baseItemType;
     maxTagCount: {
-      value: number
+      value: number | null
     } & baseItemType;
     maxTagPlaceholder: {
-      value: Slot | ((_omittedValues: unknown) => unknown)
+      value: Slot | ((_omittedValues: unknown) => unknown) | null
     } & baseItemType;
     multiple: {
       value: boolean
@@ -490,13 +491,13 @@ type antTreeSelectComponentType = {
       value: boolean
     } & baseItemType;
     showCheckedStrategy: {
-      value: 'SHOW_ALL' | 'SHOW_PARENT' | 'SHOW_PARENT'
+      value: 'SHOW_ALL' | 'SHOW_PARENT' | 'SHOW_CHILD'
     } & baseItemType;
     showSearch: {
       value: boolean
     } & baseItemType;
     suffixIcon: {
-      value: VNode | Slot
+      value: VNode | Slot | null
     } & baseItemType;
     treeCheckable: {
       value: boolean
@@ -506,11 +507,12 @@ type antTreeSelectComponentType = {
     } & baseItemType;
     treeData: {
       value: Array<{
-      value: unknown, label: unknown, children: unknown,
-      disabled: unknown, disableCheckbox: unknown, selectable: unknown}>
+        value: unknown, label: unknown, children: unknown,
+        disabled: unknown, disableCheckbox: unknown, selectable: unknown
+      }>
     } & baseItemType;
     replaceFields: {
-      value: { children: string, title:string, key: string, value: string }
+      value: { children?: string, title?: string, key?: string, value?: string }
     } & baseItemType;
     treeDataSimpleMode: {
       value: boolean | Array<{ id: string, pId: string, rootPId: null }>
@@ -549,9 +551,6 @@ type antRadioGroupComponentType = {
     } & baseItemType;
     options: {
       value: Array<string> | Array<{ label: string, value: string, disabled?: boolean }>
-    } & baseItemType;
-    value: {
-      value: unknown
     } & baseItemType;
     buttonStyle: {
       value: 'outline' | 'solid'
@@ -631,7 +630,7 @@ type antSliderComponentType = {
       value: { number: string | VNode } |
         { number: { style: {
           [key: string]: number | string
-        }, label: string|VNode } } | { number: () => VNode }
+        }, label: string|VNode } } | { number: () => VNode } | null
     } & baseItemType;
     max: {
       value: number
@@ -649,7 +648,7 @@ type antSliderComponentType = {
       value: number | null
     } & baseItemType;
     tipFormatter: {
-      value: () => unknown | null
+      value: (() => unknown) | null
     } & baseItemType;
     vertical: {
       value: boolean
@@ -661,7 +660,7 @@ type antSliderComponentType = {
       value: boolean
     } & baseItemType;
     getTooltipPopupContainer: {
-      value: () => HTMLElement
+      value: (() => HTMLElement) | null
     } & baseItemType;
     size: {
       value: 'large' | 'default' | 'small'
@@ -670,68 +669,69 @@ type antSliderComponentType = {
 } & antFormItemType;
 
 type antDateComponentType = {
-  config: {
-    allowClear: {
-      value: boolean
-    } & baseItemType;
-    autofocus: {
-      value: boolean
-    } & baseItemType;
-    dateRender: {
-      value: Slot
-    } & baseItemType;
-    disabled: {
-      value: boolean
-    } & baseItemType;
-    disabledDate: {
-      value: (_currentDate: unknown) => boolean
-    } & baseItemType;
-    getCalendarContainer: {
-      value: () => HTMLElement
-    } & baseItemType;
-    locale: {
-      value: {
+  allowClear: {
+    value: boolean
+  } & baseItemType;
+  autofocus: {
+    value: boolean
+  } & baseItemType;
+  dateRender: {
+    value: Slot | null
+  } & baseItemType;
+  disabled: {
+    value: boolean
+  } & baseItemType;
+  disabledDate: {
+    value: null | ((_currentDate: unknown) => boolean)
+  } & baseItemType;
+  getCalendarContainer: {
+    value: null | (() => HTMLElement)
+  } & baseItemType;
+  locale: {
+    value: {
       [key: string]: unknown
-    }} & baseItemType;
-    mode: {
-      value: 'time' | 'date' | 'month' | 'year' | 'decade'
-    } & baseItemType;
-    open: {
-      value: boolean
-    } & baseItemType;
-    placeholder: {
-      value: string
-    } & baseItemType;
-    popupStyle: {
-      value: {
+    }
+  } & baseItemType;
+  mode: {
+    value: 'time' | 'date' | 'month' | 'year' | 'decade'
+  } & baseItemType;
+  open: {
+    value: boolean
+  } & baseItemType;
+  placeholder: {
+    value: string
+  } & baseItemType;
+  popupStyle: {
+    value: {
       [key: string]: number | string
-    }} & baseItemType;
-    dropdownClassName: {
-      value: string
-    } & baseItemType;
-    size: {
-      value: 'default' | 'small' | 'large'
-    } & baseItemType;
-    suffixIcon: {
-      value: VNode | Slot
-    } & baseItemType;
-    inputReadOnly: {
-      value: boolean
-    } & baseItemType;
-    align: {
-      value: {
+    }
+  } & baseItemType;
+  dropdownClassName: {
+    value: string
+  } & baseItemType;
+  size: {
+    value: 'default' | 'small' | 'large'
+  } & baseItemType;
+  suffixIcon: {
+    value: VNode | Slot | null
+  } & baseItemType;
+  inputReadOnly: {
+    value: boolean
+  } & baseItemType;
+  align: {
+    value: {
       [key: string]: unknown
-    }} & baseItemType
-    valueFormat: {
-      value: string
-    } & baseItemType;
-  }
-} & antFormItemType;
+    }
+  } & baseItemType
+  valueFormat: {
+    value: string
+  } & baseItemType;
+};
 
 type antTimePickerComponentType = {
   config: {
     addon: {
-      value: Slot
+      value: Slot | null
     } & baseItemType;
     allowClear: {
       value: boolean
@@ -752,19 +752,19 @@ type antTimePickerComponentType = {
       value: boolean
     } & baseItemType;
     disabledHours: {
-      value: () => unknown
+      value: null | (() => unknown)
     } & baseItemType;
     disabledMinutes: {
-      value: (_selectedHour: unknown) => unknown
+      value: null | ((_selectedHour: unknown) => unknown)
     } & baseItemType;
     disabledSeconds: {
-      value: (_selectedHour: unknown, _selectedMinute: unknown) => unknown
+      value: null | ((_selectedHour: unknown, _selectedMinute: unknown) => unknown)
     } & baseItemType;
     format: {
       value: string
     } & baseItemType;
     getPopupContainer: {
-      value: (_trigger: unknown) => HTMLElement
+      value: null | ((_trigger: unknown) => HTMLElement)
     } & baseItemType;
     hideDisabledOptions: {
       value: boolean
@@ -789,13 +789,14 @@ type antTimePickerComponentType = {
     } & baseItemType;
     popupStyle: {
       value: {
-      [key: string]: number | string
-    }} & baseItemType;
+        [key: string]: number | string
+      }
+    } & baseItemType;
     secondStep: {
       value: number
     } & baseItemType;
     suffixIcon: {
-      value: string | VNode | Slot
+      value: string | VNode | Slot | null
     } & baseItemType;
     clearIcon: {
       value: string | VNode | Slot
@@ -805,8 +806,9 @@ type antTimePickerComponentType = {
     } & baseItemType;
     align: {
       value: {
-      [key: string]: unknown
-    }} & baseItemType;
+        [key: string]: unknown
+      }
+    } & baseItemType;
     valueFormat: {
       value: string
     } & baseItemType;
@@ -822,22 +824,19 @@ type antDatePickerComponentType = {
       value: unknown
     } & baseItemType;
     disabledTime: {
-      value: (_date: unknown) => unknown
+      value: null | ((_date: unknown) => unknown)
     } & baseItemType;
     format: {
       value: string | Array<string>
     } & baseItemType;
     renderExtraFooter: {
-      value: Slot
+      value: Slot | null
     } & baseItemType;
     showTime: {
       value: antTimePickerComponentType | boolean
     } & baseItemType;
     showToday: {
       value: boolean
-    } & baseItemType;
-    size: {
-      value: 'large' | 'default' | 'small'
     } & baseItemType;
   } & antDateComponentType;
 } & antFormItemType;
@@ -848,7 +847,7 @@ type antRangePickerComponentType = {
       value: unknown
     } & baseItemType;
     disabledTime: {
-      value: (_dates: [unknown, unknown], _partial: 'start' | 'end') => unknown
+      value: null | ((_dates: [unknown, unknown], _partial: 'start' | 'end') => unknown)
     } & baseItemType;
     format: {
       value: string
@@ -857,16 +856,13 @@ type antRangePickerComponentType = {
       value: { [range: string]: Array<unknown> } | { [range: string]: () => Array<unknown> }
     } & baseItemType;
     renderExtraFooter: {
-      value: Slot
+      value: Slot | null
     } & baseItemType;
     separator: {
       value: string
     } & baseItemType;
     showTime: {
       value: antTimePickerComponentType | boolean
-    } & baseItemType;
-    size: {
-      value: 'large' | 'default' | 'small'
     } & baseItemType;
   } & antDateComponentType;
 } & antFormItemType;
@@ -880,13 +876,10 @@ type antMonthPickerComponentType = {
       value: string
     } & baseItemType;
     monthCellContentRender: {
-      value: Slot
+      value: Slot | null
     } & baseItemType;
     renderExtraFooter: {
-      value: Slot
-    } & baseItemType;
-    size: {
-      value: 'large' | 'default' | 'small'
+      value: Slot | null
     } & baseItemType;
   } & antDateComponentType;
 } & antFormItemType;
@@ -900,10 +893,7 @@ type antWeekPickerComponentType = {
       value: string
     } & baseItemType;
     renderExtraFooter: {
-      value: Slot
-    } & baseItemType;
-    size: {
-      value: 'large' | 'default' | 'small'
+      value: Slot | null
     } & baseItemType;
   } & antDateComponentType;
 } & antFormItemType;
@@ -952,28 +942,31 @@ type antUploadComponentType = {
       value: boolean
     } & baseItemType;
     beforeUpload: {
-      value: (_file: File, _fileList: Array<File>) => boolean | Promise<unknown>
+      value: null | ((_file: File, _fileList: Array<File>) => boolean | Promise<unknown>)
     } & baseItemType;
     customRequest: {
-      value: (..._args: unknown[]) => unknown
+      value: null | ((..._args: unknown[]) => unknown)
     } & baseItemType;
     data: {
       value: {
-      [key: string]: unknown
-    } | ((_file: string) => {
-      [key: string]: unknown
-    })} & baseItemType;
+        [key: string]: unknown
+      } | ((_file: string) => {
+        [key: string]: unknown
+      })
+    } & baseItemType;
     disabled: {
       value: boolean
     } & baseItemType;
     fileList: {
       value: Array<{
-      [key: string]: unknown
-    }>} & baseItemType;
+        [key: string]: unknown
+      }>
+    } & baseItemType;
     headers: {
       value: {
-      [key: string]: unknown
-    }} & baseItemType;
+        [key: string]: unknown
+      }
+    } & baseItemType;
     listType: {
       value: string
     } & baseItemType;
@@ -984,7 +977,7 @@ type antUploadComponentType = {
       value: string
     } & baseItemType;
     previewFile: {
-      value: (_file: File | Blob) => Promise<string>
+      value: null | ((_file: File | Blob) => Promise<string>)
     } & baseItemType;
     showUploadList: {
       value: boolean | { showPreviewIcon?: boolean, showRemoveIcon?: boolean }
@@ -999,10 +992,10 @@ type antUploadComponentType = {
       value: boolean
     } & baseItemType;
     remove: {
-      value: (_file: File) => boolean | Promise<unknown>
+      value: null | ((_file: File) => boolean | Promise<unknown>)
     } & baseItemType;
     transformFile: {
-      value: (_file: File) => string | Blob | File | Promise<string | Blob | File>
+      value: null | ((_file: File) => string | Blob | File | Promise<string | Blob | File>)
     } & baseItemType;
     size: {
       value: 'large' | 'default' | 'small'
@@ -1016,6 +1009,7 @@ type RowComponentType = {
 export {
   antFormType,
   antFormItemType,
+  antInputType,
   antSingleInputComponentType,
   antMultiInputComponentType,
   antSearchInputComponentType,
@@ -1035,6 +1029,7 @@ export {
   antTimePickerComponentType,
   antMonthPickerComponentType,
   antWeekPickerComponentType,
+  antDateComponentType,
   antRateComponentType,
   antUploadComponentType,
   RowComponentType,

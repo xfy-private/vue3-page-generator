@@ -50,16 +50,19 @@
       </div>
     </a-col>
     <a-col class="right" :xxl="4" :xl="4" :lg="5">
-      <RightPanel />
+      <RightPanel :form="formConfig" />
+      <a-button type="primary" @click="submit">提交</a-button>
     </a-col>
   </a-row>
 </template>
 
 <script lang="ts">
-import { defineAsyncComponent, defineComponent, ref } from 'vue';
+import {
+  defineAsyncComponent, defineComponent, ref, watch,
+} from 'vue';
 import draggable from 'vuedraggable';
 
-import { componentList } from '@/utils/config';
+import { componentList, antForm } from '@/utils/config';
 
 export default defineComponent({
   name: 'Home',
@@ -69,8 +72,17 @@ export default defineComponent({
   },
   setup() {
     const leftComponents = ref(componentList);
+    const formConfig = ref(antForm);
+    function submit() {
+      console.log(formConfig.value);
+    }
+    watch(formConfig.value, () => {
+      console.log(formConfig.value);
+    });
     return {
       leftComponents,
+      formConfig,
+      submit,
     };
   },
 });

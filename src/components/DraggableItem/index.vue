@@ -12,8 +12,8 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'DraggableItem',
-  setup() {
-    return {};
+  render(h: () => void) {
+    return h();
   },
 });
 </script>

@@ -6,7 +6,7 @@
           <a-input />
         </a-form-item>
         <a-form-item label="组件类型">
-          <a-select v-model:value="value1">
+          <a-select>
             <a-select-option value="1">单行输入</a-select-option>
             <a-select-option value="2">多行输入</a-select-option>
           </a-select>
@@ -16,13 +16,13 @@
     <a-tab-pane key="2" tab="表单属性">
       <a-form :labelCol="labelCol" :wrapperCol="wrapperCol" :model="form">
         <a-form-item label="表单名">
-          <a-input v-model="form.name" />
+          <a-input v-model:value="formConfig.name" />
         </a-form-item>
         <a-form-item label="表单模型">
-          <a-input v-model:value="form.model" />
+          <a-input v-model:value="formConfig.model" />
         </a-form-item>
         <a-form-item label="校验模型">
-          <a-input v-model:value="form.rules" />
+          <a-input v-model:value="formConfig.rules" />
         </a-form-item>
       </a-form>
     </a-tab-pane>
@@ -32,23 +32,22 @@
 <script lang="ts">
 import { defineComponent, ref, PropType } from 'vue';
 
-import { formType } from '@/types/config';
+import { antFormType } from '@/types/config';
 
 export default defineComponent({
   name: 'RightPanel',
   props: {
     form: {
-      type: Object as PropType<formType>,
+      type: Object as PropType<antFormType>,
       required: true,
     },
   },
   setup(props) {
-    const value1 = ref('1');
+    const formConfig = ref(props.form);
     return {
-      ...props,
       labelCol: { span: 6 },
       wrapperCol: { span: 18 },
-      value1,
+      formConfig,
     };
   },
 });
