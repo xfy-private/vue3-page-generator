@@ -59,7 +59,7 @@
 import { defineAsyncComponent, defineComponent, ref } from 'vue';
 import draggable from 'vuedraggable';
 
-import { componentList } from '@/utils/data';
+import { componentList } from '@/utils/config';
 
 export default defineComponent({
   name: 'Home',

@@ -16,7 +16,7 @@
     <a-tab-pane key="2" tab="表单属性">
       <a-form :labelCol="labelCol" :wrapperCol="wrapperCol" :model="form">
         <a-form-item label="表单名">
-          <a-input v-model:value="form.name" />
+          <a-input v-model="form.name" />
         </a-form-item>
         <a-form-item label="表单模型">
           <a-input v-model:value="form.model" />
@@ -32,7 +32,7 @@
 <script lang="ts">
 import { defineComponent, ref, PropType } from 'vue';
 
-import { formType } from '@/types/data';
+import { formType } from '@/types/config';
 
 export default defineComponent({
   name: 'RightPanel',
