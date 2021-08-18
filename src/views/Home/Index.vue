@@ -20,87 +20,6 @@
               </template>
             </draggable>
           </template>
-          <!--
-          <svg-icon class="icon-title" name="input">输入型组件</svg-icon>
-          <a-row wrap justify="space-between" :gutter="[0, 10]">
-            <a-col class="components-item" :span="11">
-              <svg-icon name="SingleInput">单行输入</svg-icon>
-            </a-col>
-            <a-col class="components-item" :span="11">
-              <svg-icon name="MultiInput">多行输入</svg-icon>
-            </a-col>
-            <a-col class="components-item" :span="11">
-              <svg-icon name="NumberInput">数字输入</svg-icon>
-            </a-col>
-            <a-col class="components-item" :span="11">
-              <svg-icon name="password">密码输入</svg-icon>
-            </a-col>
-            <a-col class="components-item" :span="11">
-              <svg-icon name="phone">手机输入</svg-icon>
-            </a-col>
-            <a-col class="components-item" :span="11">
-              <svg-icon name="email">邮箱输入</svg-icon>
-            </a-col>
-            <a-col class="components-item" :span="11">
-              <svg-icon name="RichText">富文编辑器</svg-icon>
-            </a-col>
-            <a-col class="components-item" :span="11">
-              <svg-icon name="customize">自定义输入</svg-icon>
-            </a-col>
-          </a-row>
-
-          <svg-icon class="icon-title" name="choose">选择型组件</svg-icon>
-          <a-row wrap justify="space-between" :gutter="[0, 10]">
-            <a-col class="components-item" :span="11">
-              <svg-icon name="select">下拉选择</svg-icon>
-            </a-col>
-            <a-col class="components-item" :span="11">
-              <svg-icon name="cascade">级联选择</svg-icon>
-            </a-col>
-            <a-col class="components-item" :span="11">
-              <svg-icon name="TreeSelect">树型选择</svg-icon>
-            </a-col>
-            <a-col class="components-item" :span="11">
-              <svg-icon name="radio">单选框组</svg-icon>
-            </a-col>
-            <a-col class="components-item" :span="11">
-              <svg-icon name="checkbox">复选框组</svg-icon>
-            </a-col>
-            <a-col class="components-item" :span="11">
-              <svg-icon name="switch">滑动开关</svg-icon>
-            </a-col>
-            <a-col class="components-item" :span="11">
-              <svg-icon name="slider">滑动输入</svg-icon>
-            </a-col>
-            <a-col class="components-item" :span="11">
-              <svg-icon name="date">日期选择</svg-icon>
-            </a-col>
-            <a-col class="components-item" :span="11">
-              <svg-icon name="time">时间选择</svg-icon>
-            </a-col>
-            <a-col class="components-item" :span="11">
-              <svg-icon name="DateScope">日期范围</svg-icon>
-            </a-col>
-            <a-col class="components-item" :span="11">
-              <svg-icon name="TimeScope">时间范围</svg-icon>
-            </a-col>
-            <a-col class="components-item" :span="11">
-              <svg-icon name="mentions">提及输入</svg-icon>
-            </a-col>
-            <a-col class="components-item" :span="11">
-              <svg-icon name="rate">评分</svg-icon>
-            </a-col>
-            <a-col class="components-item" :span="11">
-              <svg-icon name="upload">上传</svg-icon>
-            </a-col>
-          </a-row>
-
-          <svg-icon class="icon-title" name="component">布局型组件</svg-icon>
-          <a-row wrap justify="space-between" :gutter="[0, 10]">
-            <a-col class="components-item" :span="11">
-              <svg-icon name="row">行内布局</svg-icon>
-            </a-col>
-          </a-row>-->
         </a-tab-pane>
         <a-tab-pane key="2" tab="Element Plus"></a-tab-pane>
       </a-tabs>
@@ -124,33 +43,20 @@
       <div class="center-bottom">
         <div class="window">
           <svg-icon name="forward" class="turn" size="1.6" />
-          <div class="content"></div>
+          <div class="content">
+            <a-row></a-row>
+          </div>
         </div>
       </div>
     </a-col>
     <a-col class="right" :xxl="4" :xl="4" :lg="5">
-      <a-tabs>
-        <a-tab-pane key="1" tab="组件属性">
-          <a-form :label-col="labelCol" :wrapper-col="wrapperCol">
-            <a-form-item label="标题">
-              <a-input />
-            </a-form-item>
-            <a-form-item label="组件类型">
-              <a-select v-model:value="value1">
-                <a-select-option value="1">单行输入</a-select-option>
-                <a-select-option value="2">多行输入</a-select-option>
-              </a-select>
-            </a-form-item>
-          </a-form>
-        </a-tab-pane>
-        <a-tab-pane key="2" tab="表单属性"></a-tab-pane>
-      </a-tabs>
+      <RightPanel />
     </a-col>
   </a-row>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineAsyncComponent, defineComponent, ref } from 'vue';
 import draggable from 'vuedraggable';
 
 import { componentList } from '@/utils/data';
@@ -159,14 +65,11 @@ export default defineComponent({
   name: 'Home',
   components: {
     draggable,
+    RightPanel: defineAsyncComponent(() => import('@/components/RightPanel')),
   },
   setup() {
-    const value1 = ref('1');
     const leftComponents = ref(componentList);
     return {
-      labelCol: { span: 6 },
-      wrapperCol: { span: 18 },
-      value1,
       leftComponents,
     };
   },

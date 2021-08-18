@@ -2,6 +2,21 @@ import {
   baseComponentType, inputComponentItemType, selectComponentItemType, layoutComponentItemType,
 } from '@/types/data';
 
+const baseForm = {
+  name: 'form',
+  model: 'model',
+  rules: 'rules',
+  ref: 'ref',
+  gutter: 10,
+  span: 24,
+  disabled: false,
+  size: 'default',
+};
+
+const antForm = {
+  ...baseForm,
+};
+
 const inputComponentList: Array<inputComponentItemType> = [
   {
     icon: 'SingleInput',
@@ -126,6 +141,7 @@ const componentList: Array<{
 ];
 
 export {
+  antForm,
   componentList,
   inputComponentList,
   selectComponentList,
