@@ -44,14 +44,15 @@ type baseFormItemType = {
     [key: string]: string
   };
   required: boolean;
-} & baseComponentType;
+};
+
+type antTagType = 'a-auto-complete' | 'a-cascader' | 'a-checkbox-group' | 'a-checkbox' | 'a-date-picker' | 'a-month-picker' |
+'a-range-picker' | 'a-week-picker' | 'a-input' | 'a-input-password' | 'a-textarea' | 'a-input-search' |
+'a-input-number' | 'a-mentions' | 'a-radio-group' | 'a-radio' | 'a-rate' | 'a-select' | 'a-slider' | 'a-switch' |
+'a-time-picker' | 'a-tree-select' | 'a-upload' | 'a-row';
 
 type antFormItemType = {
   name: string;
-  tag: 'a-auto-complete' | 'a-cascader' | 'a-checkbox-group' | 'a-checkbox' | 'a-date-picker' | 'a-month-picker' |
-  'a-range-picker' | 'a-week-picker' | 'a-input' | 'a-input-password' | 'a-textarea' | 'a-input-search' |
-  'a-input-number' | 'a-mentions' | 'a-radio-group' | 'a-radio' | 'a-rate' | 'a-select' | 'a-slider' | 'a-switch' |
-  'a-time-picker' | 'a-tree-select' | 'a-upload' | 'a-row' | null
   autoLink: boolean;
   colon: boolean;
   extra: string | Slot;
@@ -66,402 +67,408 @@ type antFormItemType = {
   validateTrigger: 'blur' | 'change' | ['blur', 'change'];
 } & baseFormItemType;
 
-type baseItemType = {
+type antComponentType = {
+  form: antFormItemType,
+  tag: antTagType,
+  slots: Array<Slot>,
+} & baseComponentType;
+
+type valueType = {
   type: 'input' | 'select' | 'switch' | 'number' | 'radio' | 'event';
 }
 
 type antInputType = {
   addonAfter: {
     value: string | Slot,
-  } & baseItemType;
+  } & valueType;
   addonBefore: {
     value: string | Slot,
-  } & baseItemType;
+  } & valueType;
   defaultValue: {
     value: string,
-  } & baseItemType;
+  } & valueType;
   id: {
     value: string
-  } & baseItemType;
+  } & valueType;
   disabled: {
     value: boolean;
-  } & baseItemType;
+  } & valueType;
   maxlength: {
     value: number | null;
-  } & baseItemType;
+  } & valueType;
   prefix: {
     value: string | Slot;
-  } & baseItemType;
+  } & valueType;
   size: {
     value: 'large' | 'default' | 'small';
-  } & baseItemType;
+  } & valueType;
   suffix: {
     value: string | Slot;
-  } & baseItemType;
+  } & valueType;
   allowClear: {
     value: boolean;
-  } & baseItemType;
+  } & valueType;
   placeholder: {
     value: string;
-  } & baseItemType;
+  } & valueType;
 };
 
 type antSingleInputComponentType = {
   config: {
     type: {
       value: string;
-    } & baseItemType;
+    } & valueType;
   } & antInputType
-} & antFormItemType;
+} & antComponentType;
 
 type antMultiInputComponentType = {
   config: {
     defaultValue: {
       value: string;
-    } & baseItemType;
+    } & valueType;
     showCount: {
       value: boolean;
-    } & baseItemType;
+    } & valueType;
     allowClear: {
       value: boolean;
-    } & baseItemType;
+    } & valueType;
     autosize: {
       value: boolean;
-    } & baseItemType;
+    } & valueType;
     maxlength: {
       value: number | null;
-    } & baseItemType;
+    } & valueType;
     disabled: {
       value: boolean;
-    } & baseItemType;
+    } & valueType;
     placeholder: {
       value: string;
-    } & baseItemType;
+    } & valueType;
     size: {
       value: 'large' | 'default' | 'small'
-    } & baseItemType;
+    } & valueType;
   }
-} & antFormItemType;
+} & antComponentType;
 
 type antSearchInputComponentType = {
   config: {
     enterButton: {
       value: boolean | Slot;
-    } & baseItemType;
+    } & valueType;
     loading: {
       value: boolean;
-    } & baseItemType;
+    } & valueType;
   } & antInputType;
-} & antFormItemType;
+} & antComponentType;
 
 type antPasswordInputComponentType = {
   config: {
     visibilityToggle: {
       value: boolean;
-    } & baseItemType;
+    } & valueType;
   } & antInputType;
-} & antFormItemType;
+} & antComponentType;
 
 type antAutoCompleteComponentType = {
   config: {
     allowClear: {
       value: boolean;
-    } & baseItemType;
+    } & valueType;
     autofocus: {
       value: boolean;
-    } & baseItemType;
+    } & valueType;
     backfill: {
       value: boolean;
-    } & baseItemType;
+    } & valueType;
     '#default': {
       value: HTMLInputElement | HTMLTextAreaElement | '';
-    } & baseItemType;
+    } & valueType;
     options: {
       value: Slot | {
         value?: string,
         text?: string,
       }
-    } & baseItemType;
+    } & valueType;
     dropdownMenuStyle: {
       value: {
         [key: string]: string | number
       }
-    } & baseItemType;
+    } & valueType;
     defaultActiveFirstOption: {
       value: boolean;
-    } & baseItemType;
+    } & valueType;
     disabled: {
       value: boolean;
-    } & baseItemType;
+    } & valueType;
     filterOption: {
       value: boolean | ((_inputValue: unknown, _option: unknown) => void);
-    } & baseItemType;
+    } & valueType;
     optionLabelProp: {
       value: string;
-    } & baseItemType;
+    } & valueType;
     placeholder: {
       value: string | Slot;
-    } & baseItemType;
+    } & valueType;
     defaultOpen: {
       value: boolean;
-    } & baseItemType;
+    } & valueType;
     open: {
       value: boolean;
-    } & baseItemType;
+    } & valueType;
     size: {
       value: 'large' | 'default' | 'small'
-    } & baseItemType;
+    } & valueType;
   };
-} & antFormItemType;
+} & antComponentType;
 
 type antNumberInputComponentType = {
   config: {
     autofocus: {
       value: boolean;
-    } & baseItemType;
+    } & valueType;
     defaultValue: {
       value: number | null;
-    } & baseItemType;
+    } & valueType;
     disabled: {
       value: boolean;
-    } & baseItemType;
+    } & valueType;
     formatter: {
       value: null | ((_value: number | string) => string);
-    } & baseItemType;
+    } & valueType;
     max: {
       value: number;
-    } & baseItemType;
+    } & valueType;
     min: {
       value: number;
-    } & baseItemType;
+    } & valueType;
     parser: {
       value: null | ((_value: string) => number);
-    } & baseItemType;
+    } & valueType;
     precision: {
       value: number | null;
-    } & baseItemType;
+    } & valueType;
     decimalSeparator: {
       value: string | null;
-    } & baseItemType;
+    } & valueType;
     size: {
       value: 'large' | 'default' | 'small'
-    } & baseItemType;
+    } & valueType;
     step: {
       value: number|string;
-    } & baseItemType;
+    } & valueType;
   };
-} & antFormItemType;
+} & antComponentType;
 
 type antMentionsInputComponentType = {
   config: {
     autofocus: {
       value: boolean;
-    } & baseItemType;
+    } & valueType;
     defaultValue: {
       value: string;
-    } & baseItemType;
+    } & valueType;
     filterOption: {
       value: boolean | ((_input: string, _option: { value: string }) => boolean)
-    } & baseItemType;
+    } & valueType;
     notFoundContent: {
       value: RendererNode | null
-    } & baseItemType;
+    } & valueType;
     placement: {
       value: 'top' | 'bottom'
-    } & baseItemType;
+    } & valueType;
     prefix: {
       value: string | Array<string>
-    } & baseItemType;
+    } & valueType;
     split: {
       value: string
-    } & baseItemType;
+    } & valueType;
     validateSearch: {
       value: null | ((_text: string, _props: MentionsProps) => void)
-    } & baseItemType;
+    } & valueType;
     getPopupContainer: {
       value: null | (() => HTMLElement)
-    } & baseItemType;
+    } & valueType;
     size: {
       value: 'large' | 'default' | 'small'
-    } & baseItemType;
+    } & valueType;
   };
-} & antFormItemType;
+} & antComponentType;
 
 type antTextComponentType = {
   config: {
   };
-} & antFormItemType;
+} & antComponentType;
 
 type antSelectComponentType = {
   config: {
     allowClear: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     autoClearSearchValue: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     autofocus: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     bordered: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     defaultActiveFirstOption: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     disabled: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     dropdownClassName: {
       value: string
-    } & baseItemType;
+    } & valueType;
     dropdownMatchSelectWidth: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     dropdownRender: {
       value: ((_arg: { menuNode: VNode, _props: VNodeProps }) => VNode) | Slot | null
-    } & baseItemType;
+    } & valueType;
     dropdownStyle: {
       value: {
       [key: string]: number | string
       }
-    } & baseItemType;
+    } & valueType;
     dropdownMenuStyle: {
       value: {
         [key: string]: number | string
       }
-    } & baseItemType;
+    } & valueType;
     filterOption: {
       value: boolean | ((_inputValue: unknown, _option: unknown) => void)
-    } & baseItemType;
+    } & valueType;
     firstActiveValue: {
       value: string | Array<string>
-    } & baseItemType;
+    } & valueType;
     getPopupContainer: {
       value: null | (() => HTMLElement)
-    } & baseItemType;
+    } & valueType;
     labelInValue: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     maxTagCount: {
       value: number | null
-    } & baseItemType;
+    } & valueType;
     maxTagPlaceholder: {
       value: null | Slot | ((_omittedValues: unknown) => unknown)
-    } & baseItemType;
+    } & valueType;
     maxTagTextLength: {
       value: number | null
-    } & baseItemType;
+    } & valueType;
     mode: {
       value: 'multiple' | 'tags' | 'combobox' | null
-    } & baseItemType;
+    } & valueType;
     notFoundContent: {
       value: string | Slot
-    } & baseItemType;
+    } & valueType;
     optionFilterProp: {
       value: string
-    } & baseItemType;
+    } & valueType;
     optionLabelProp: {
       value: string
-    } & baseItemType;
+    } & valueType;
     placeholder: {
       value: string | Slot
-    } & baseItemType;
+    } & valueType;
     showSearch: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     showArrow: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     size: {
       value: 'large' | 'default' | 'small'
-    } & baseItemType;
+    } & valueType;
     suffixIcon: {
       value: VNode | Slot | null
-    } & baseItemType;
+    } & valueType;
     removeIcon: {
       value: VNode | Slot | null
-    } & baseItemType;
+    } & valueType;
     clearIcon: {
       value: VNode | Slot | null
-    } & baseItemType;
+    } & valueType;
     menuItemSelectedIcon: {
       value: VNode | Slot | null
-    } & baseItemType;
+    } & valueType;
     tokenSeparators: {
       value: Array<string>
-    } & baseItemType;
+    } & valueType;
     options: {
       value: Array<{
       value: string, label: string, disabled: string, key: string, title: string}>
-    } & baseItemType;
+    } & valueType;
     option: {
       value: Slot | null
-    } & baseItemType;
+    } & valueType;
     defaultOpen: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     open: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
   };
-} & antFormItemType;
+} & antComponentType;
 
 type antCascaderComponentType = {
   config: {
     allowClear: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     autofocus: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     changeOnSelect: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     defaultValue: {
       value: string[] | number[]
-    } & baseItemType;
+    } & valueType;
     disabled: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     displayRender: {
       value: ((_arg: {labels: unknown, selectedOptions: unknown}) => VNode) | Slot | null
-    } & baseItemType;
+    } & valueType;
     expandTrigger: {
       value: 'click' | 'hover'
-    } & baseItemType;
+    } & valueType;
     fieldNames: {
       value: { label: 'label', value: 'value', children: 'children' } | null
-    } & baseItemType;
+    } & valueType;
     getPopupContainer: {
       value: ((_triggerNode: VNode)=> HTMLElement) | null
-    } & baseItemType;
+    } & valueType;
     loadData: {
       value: ((_selectedOptions: unknown) => void) | null
-    } & baseItemType;
+    } & valueType;
     notFoundContent: {
       value: string
-    } & baseItemType;
+    } & valueType;
     options: {
       value: unknown
-    } & baseItemType;
+    } & valueType;
     placeholder: {
       value: string
-    } & baseItemType;
+    } & valueType;
     popupClassName: {
       value: string
-    } & baseItemType;
+    } & valueType;
     popupStyle: {
       value: {
         [key: string]: number | string;
       }
-    } & baseItemType;
+    } & valueType;
     popupPlacement: {
       value: 'bottomLeft' | 'bottomRight' | 'topLeft' | 'topRight'
-    } & baseItemType;
+    } & valueType;
     popupVisible: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     showSearch: {
       value: boolean | {
         filter: ((_inputValue: unknown, _path: unknown) => boolean) | null;
@@ -470,593 +477,590 @@ type antCascaderComponentType = {
         render: ((_arg: {inputValue: unknown, path: unknown}) => VNode) | null;
         sort: ((_a: unknown, _b: unknown, _inputValue: unknown) => unknown) | null;
       }
-    } & baseItemType;
+    } & valueType;
     size: {
       value: 'large' | 'default' | 'small'
-    } & baseItemType;
+    } & valueType;
     suffixIcon: {
       value: string | VNode | Slot
-    } & baseItemType;
+    } & valueType;
   };
-} & antFormItemType;
+} & antComponentType;
 
 type antTreeSelectComponentType = {
   config: {
     allowClear: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     defaultValue: {
       value: string | Array<string>
-    } & baseItemType;
+    } & valueType;
     disabled: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     dropdownClassName: {
       value: string
-    } & baseItemType;
+    } & valueType;
     dropdownMatchSelectWidth: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     dropdownStyle: {
       value: {
         [key: string]: string | number
       }
-    } & baseItemType;
+    } & valueType;
     filterTreeNode: {
       value: boolean | ((_inputValue: string, _treeNode: unknown) => boolean)
-    } & baseItemType;
+    } & valueType;
     getPopupContainer: {
       value: null | (() => HTMLElement)
-    } & baseItemType;
+    } & valueType;
     labelInValue: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     loadData: {
       value: (_node: string) => unknown
-    } & baseItemType;
+    } & valueType;
     maxTagCount: {
       value: number | null
-    } & baseItemType;
+    } & valueType;
     maxTagPlaceholder: {
       value: Slot | ((_omittedValues: unknown) => unknown) | null
-    } & baseItemType;
+    } & valueType;
     multiple: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     placeholder: {
       value: string | Slot
-    } & baseItemType;
+    } & valueType;
     searchPlaceholder: {
       value: string | Slot
-    } & baseItemType;
+    } & valueType;
     searchValue: {
       value: string
-    } & baseItemType;
+    } & valueType;
     treeIcon: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     showCheckedStrategy: {
       value: 'SHOW_ALL' | 'SHOW_PARENT' | 'SHOW_CHILD'
-    } & baseItemType;
+    } & valueType;
     showSearch: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     suffixIcon: {
       value: VNode | Slot | null
-    } & baseItemType;
+    } & valueType;
     treeCheckable: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     treeCheckStrictly: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     treeData: {
       value: Array<{
         value: unknown, label: unknown, children: unknown,
         disabled: unknown, disableCheckbox: unknown, selectable: unknown
       }>
-    } & baseItemType;
+    } & valueType;
     replaceFields: {
       value: { children?: string, title?: string, key?: string, value?: string }
-    } & baseItemType;
+    } & valueType;
     treeDataSimpleMode: {
       value: boolean | Array<{ id: string, pId: string, rootPId: null }>
-    } & baseItemType;
+    } & valueType;
     treeDefaultExpandAll: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     treeDefaultExpandedKeys: {
       value: Array<string> | Array<number>
-    } & baseItemType;
+    } & valueType;
     treeExpandedKeys: {
       value: Array<string> | Array<number>
-    } & baseItemType;
+    } & valueType;
     treeNodeFilterProp: {
       value: string
-    } & baseItemType;
+    } & valueType;
     treeNodeLabelProp: {
       value: string
-    } & baseItemType;
+    } & valueType;
     size: {
       value: 'large' | 'default' | 'small'
-    } & baseItemType;
+    } & valueType;
   };
-} & antFormItemType;
+} & antComponentType;
 
 type antRadioGroupComponentType = {
   config: {
     defaultValue: {
       value: unknown
-    } & baseItemType;
+    } & valueType;
     disabled: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     name: {
       value: string
-    } & baseItemType;
+    } & valueType;
     options: {
       value: Array<string> | Array<{ label: string, value: string, disabled?: boolean }>
-    } & baseItemType;
+    } & valueType;
     buttonStyle: {
       value: 'outline' | 'solid'
-    } & baseItemType;
+    } & valueType;
     size: {
       value: 'large' | 'default' | 'small'
-    } & baseItemType;
+    } & valueType;
   };
-} & antFormItemType;
+} & antComponentType;
 
 type antCheckboxComponentType = {
   config: {
     disabled: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     name: {
       value: string
-    } & baseItemType;
+    } & valueType;
     options: {
       value: Array<string> | Array<{
       label: string, value: string, disabled?: boolean,
       indeterminate?: boolean, onChange?: (..._args: unknown[]) => unknown }>
-    } & baseItemType;
+    } & valueType;
     size: {
       value: 'large' | 'default' | 'small'
-    } & baseItemType;
+    } & valueType;
   };
-} & antFormItemType;
+} & antComponentType;
 
 type antSwitchComponentType = {
   config: {
     autofocus: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     checked: {
       value: boolean | string | number
-    } & baseItemType;
+    } & valueType;
     disabled: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     loading: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     size: {
       value: 'default' | 'small' | 'large'
-    } & baseItemType;
+    } & valueType;
     checkedChildren: {
       value: string| Slot
-    } & baseItemType;
+    } & valueType;
     unCheckedChildren: {
       value: string| Slot
-    } & baseItemType;
+    } & valueType;
     checkedValue: {
       value: boolean | string | number
-    } & baseItemType;
+    } & valueType;
     unCheckedValue: {
       value: boolean | string | number
-    } & baseItemType;
+    } & valueType;
   };
-} & antFormItemType;
+} & antComponentType;
 
 type antSliderComponentType = {
   config: {
     autofocus: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     disabled: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     dots: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     included: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     marks: {
       value: { number: string | VNode } |
         { number: { style: {
           [key: string]: number | string
         }, label: string|VNode } } | { number: () => VNode } | null
-    } & baseItemType;
+    } & valueType;
     max: {
       value: number
-    } & baseItemType;
+    } & valueType;
     min: {
       value: number
-    } & baseItemType;
+    } & valueType;
     range: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     reverse: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     step: {
       value: number | null
-    } & baseItemType;
+    } & valueType;
     tipFormatter: {
       value: (() => unknown) | null
-    } & baseItemType;
+    } & valueType;
     vertical: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     tooltipPlacement: {
       value: string
-    } & baseItemType;
+    } & valueType;
     tooltipVisible: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     getTooltipPopupContainer: {
       value: (() => HTMLElement) | null
-    } & baseItemType;
+    } & valueType;
     size: {
       value: 'large' | 'default' | 'small'
-    } & baseItemType;
+    } & valueType;
   };
-} & antFormItemType;
+} & antComponentType;
 
 type antDateComponentType = {
   allowClear: {
     value: boolean
-  } & baseItemType;
+  } & valueType;
   autofocus: {
     value: boolean
-  } & baseItemType;
+  } & valueType;
   dateRender: {
     value: Slot | null
-  } & baseItemType;
+  } & valueType;
   disabled: {
     value: boolean
-  } & baseItemType;
+  } & valueType;
   disabledDate: {
     value: null | ((_currentDate: unknown) => boolean)
-  } & baseItemType;
+  } & valueType;
   getCalendarContainer: {
     value: null | (() => HTMLElement)
-  } & baseItemType;
+  } & valueType;
   locale: {
     value: {
       [key: string]: unknown
     }
-  } & baseItemType;
+  } & valueType;
   mode: {
     value: 'time' | 'date' | 'month' | 'year' | 'decade'
-  } & baseItemType;
+  } & valueType;
   open: {
     value: boolean
-  } & baseItemType;
+  } & valueType;
   placeholder: {
     value: string
-  } & baseItemType;
+  } & valueType;
   popupStyle: {
     value: {
       [key: string]: number | string
     }
-  } & baseItemType;
+  } & valueType;
   dropdownClassName: {
     value: string
-  } & baseItemType;
+  } & valueType;
   size: {
     value: 'default' | 'small' | 'large'
-  } & baseItemType;
+  } & valueType;
   suffixIcon: {
     value: VNode | Slot | null
-  } & baseItemType;
+  } & valueType;
   inputReadOnly: {
     value: boolean
-  } & baseItemType;
+  } & valueType;
   align: {
     value: {
       [key: string]: unknown
     }
-  } & baseItemType
+  } & valueType
   valueFormat: {
     value: string
-  } & baseItemType;
+  } & valueType;
 };
 
 type antTimePickerComponentType = {
   config: {
     addon: {
       value: Slot | null
-    } & baseItemType;
+    } & valueType;
     allowClear: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     autofocus: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     clearText: {
       value: string
-    } & baseItemType;
+    } & valueType;
     defaultOpenValu: {
       value: unknown
-    } & baseItemType;
+    } & valueType;
     defaultValue: {
       value: unknown
-    } & baseItemType;
+    } & valueType;
     disabled: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     disabledHours: {
       value: null | (() => unknown)
-    } & baseItemType;
+    } & valueType;
     disabledMinutes: {
       value: null | ((_selectedHour: unknown) => unknown)
-    } & baseItemType;
+    } & valueType;
     disabledSeconds: {
       value: null | ((_selectedHour: unknown, _selectedMinute: unknown) => unknown)
-    } & baseItemType;
+    } & valueType;
     format: {
       value: string
-    } & baseItemType;
+    } & valueType;
     getPopupContainer: {
       value: null | ((_trigger: unknown) => HTMLElement)
-    } & baseItemType;
+    } & valueType;
     hideDisabledOptions: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     hourStep: {
       value: number
-    } & baseItemType;
+    } & valueType;
     inputReadOnly: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     minuteStep: {
       value: number
-    } & baseItemType;
+    } & valueType;
     open: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     placeholder: {
       value: string
-    } & baseItemType;
+    } & valueType;
     popupClassName: {
       value: string
-    } & baseItemType;
+    } & valueType;
     popupStyle: {
       value: {
         [key: string]: number | string
       }
-    } & baseItemType;
+    } & valueType;
     secondStep: {
       value: number
-    } & baseItemType;
+    } & valueType;
     suffixIcon: {
       value: string | VNode | Slot | null
-    } & baseItemType;
+    } & valueType;
     clearIcon: {
       value: string | VNode | Slot
-    } & baseItemType;
+    } & valueType;
     use12Hours: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     align: {
       value: {
         [key: string]: unknown
       }
-    } & baseItemType;
+    } & valueType;
     valueFormat: {
       value: string
-    } & baseItemType;
+    } & valueType;
     size: {
       value: 'large' | 'default' | 'small'
-    } & baseItemType;
+    } & valueType;
   };
-} & antFormItemType;
+} & antComponentType;
 
 type antDatePickerComponentType = {
   config: {
     defaultPickerValue: {
       value: unknown
-    } & baseItemType;
+    } & valueType;
     disabledTime: {
       value: null | ((_date: unknown) => unknown)
-    } & baseItemType;
+    } & valueType;
     format: {
       value: string | Array<string>
-    } & baseItemType;
+    } & valueType;
     renderExtraFooter: {
       value: Slot | null
-    } & baseItemType;
+    } & valueType;
     showTime: {
       value: antTimePickerComponentType | boolean
-    } & baseItemType;
+    } & valueType;
     showToday: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
   } & antDateComponentType;
-} & antFormItemType;
+} & antComponentType;
 
 type antRangePickerComponentType = {
   config: {
     defaultPickerValue: {
       value: unknown
-    } & baseItemType;
+    } & valueType;
     disabledTime: {
       value: null | ((_dates: [unknown, unknown], _partial: 'start' | 'end') => unknown)
-    } & baseItemType;
+    } & valueType;
     format: {
       value: string
-    } & baseItemType;
+    } & valueType;
     ranges: {
       value: { [range: string]: Array<unknown> } | { [range: string]: () => Array<unknown> }
-    } & baseItemType;
+    } & valueType;
     renderExtraFooter: {
       value: Slot | null
-    } & baseItemType;
+    } & valueType;
     separator: {
       value: string
-    } & baseItemType;
+    } & valueType;
     showTime: {
       value: antTimePickerComponentType | boolean
-    } & baseItemType;
+    } & valueType;
   } & antDateComponentType;
-} & antFormItemType;
+} & antComponentType;
 
 type antMonthPickerComponentType = {
   config: {
     defaultPickerValue: {
       value: unknown
-    } & baseItemType;
+    } & valueType;
     format: {
       value: string
-    } & baseItemType;
+    } & valueType;
     monthCellContentRender: {
       value: Slot | null
-    } & baseItemType;
+    } & valueType;
     renderExtraFooter: {
       value: Slot | null
-    } & baseItemType;
+    } & valueType;
   } & antDateComponentType;
-} & antFormItemType;
+} & antComponentType;
 
 type antWeekPickerComponentType = {
   config: {
     defaultPickerValue: {
       value: unknown
-    } & baseItemType;
+    } & valueType;
     format: {
       value: string
-    } & baseItemType;
+    } & valueType;
     renderExtraFooter: {
       value: Slot | null
-    } & baseItemType;
+    } & valueType;
   } & antDateComponentType;
-} & antFormItemType;
+} & antComponentType;
 
 type antRateComponentType = {
   config: {
     allowClear: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     allowHalf: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     autofocus: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     character: {
       value: string | Slot
-    } & baseItemType;
+    } & valueType;
     count: {
       value: number
-    } & baseItemType;
+    } & valueType;
     disabled: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     tooltips: {
       value: Array<string>
-    } & baseItemType;
+    } & valueType;
     size: {
       value: 'large' | 'default' | 'small'
-    } & baseItemType;
+    } & valueType;
   };
-} & antFormItemType;
+} & antComponentType;
 
 type antUploadComponentType = {
   config: {
     accept: {
       value: string
-    } & baseItemType;
+    } & valueType;
     action: {
       value: string | ((_file: File) => Promise<unknown>)
-    } & baseItemType;
+    } & valueType;
     method: {
       value: string
-    } & baseItemType;
+    } & valueType;
     directory: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     beforeUpload: {
       value: null | ((_file: File, _fileList: Array<File>) => boolean | Promise<unknown>)
-    } & baseItemType;
+    } & valueType;
     customRequest: {
       value: null | ((..._args: unknown[]) => unknown)
-    } & baseItemType;
+    } & valueType;
     data: {
       value: {
         [key: string]: unknown
       } | ((_file: string) => {
         [key: string]: unknown
       })
-    } & baseItemType;
+    } & valueType;
     disabled: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     fileList: {
       value: Array<{
         [key: string]: unknown
       }>
-    } & baseItemType;
+    } & valueType;
     headers: {
       value: {
         [key: string]: unknown
       }
-    } & baseItemType;
+    } & valueType;
     listType: {
       value: string
-    } & baseItemType;
+    } & valueType;
     multiple: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     name: {
       value: string
-    } & baseItemType;
+    } & valueType;
     previewFile: {
       value: null | ((_file: File | Blob) => Promise<string>)
-    } & baseItemType;
+    } & valueType;
     showUploadList: {
       value: boolean | { showPreviewIcon?: boolean, showRemoveIcon?: boolean }
-    } & baseItemType;
+    } & valueType;
     supportServerRender: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     withCredentials: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     openFileDialogOnClick: {
       value: boolean
-    } & baseItemType;
+    } & valueType;
     remove: {
       value: null | ((_file: File) => boolean | Promise<unknown>)
-    } & baseItemType;
+    } & valueType;
     transformFile: {
       value: null | ((_file: File) => string | Blob | File | Promise<string | Blob | File>)
-    } & baseItemType;
+    } & valueType;
     size: {
       value: 'large' | 'default' | 'small'
-    } & baseItemType;
+    } & valueType;
   };
-} & antFormItemType;
+} & antComponentType;
 
 type RowComponentType = {
-} & antFormItemType;
-
-type componentItemType = {
-  [key: string]: unknown
-}
+} & antComponentType;
 
 export {
-  componentItemType,
+  antTagType,
+  antComponentType,
   antFormType,
   antFormItemType,
   antInputType,

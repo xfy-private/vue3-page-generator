@@ -1,3 +1,8 @@
+<!--
+  @author：longzinziyan@gmail.com
+  @desc：首页
+  @date：2021-08-09 22:15:17
+-->
 <template>
   <a-row class="main">
     <a-col class="left" :xxl="4" :xl="5" :lg="6">
@@ -96,7 +101,7 @@ export default defineComponent({
     draggable,
     RightPanel: defineAsyncComponent(() => import('@/components/RightPanel')),
     Row: defineAsyncComponent(() => import('@/components/Row')),
-    DraggableItem: defineAsyncComponent(() => import('@/components/DraggableItem')),
+    DraggableItem: defineAsyncComponent(() => import('@/components/DraggableItem/index.vue')),
   },
   setup() {
     const leftComponents = ref(componentList);

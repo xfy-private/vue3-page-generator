@@ -66,10 +66,7 @@ const antFormItem: antFormItemType = {
     span: 19,
     offset: 0,
   },
-  icon: '',
-  title: '',
   name: '',
-  tag: null,
   autoLink: false,
   colon: antForm.colon,
   hasFeedback: false,
@@ -202,12 +199,15 @@ const antInputComponentList: Array<antSingleInputComponentType | antMultiInputCo
 antSearchInputComponentType | antPasswordInputComponentType | antAutoCompleteComponentType |
 antNumberInputComponentType | antMentionsInputComponentType | antTextComponentType> = [
   {
-    ...antFormItem,
+    form: {
+      ...antFormItem,
+      label: '单行输入',
+      name: 'single',
+    },
     icon: 'single',
     title: '单行输入',
-    label: '单行输入',
-    name: 'single',
     tag: 'a-input',
+    slots: [],
     config: {
       ...antInput,
       type: {
@@ -217,12 +217,15 @@ antNumberInputComponentType | antMentionsInputComponentType | antTextComponentTy
     },
   },
   {
-    ...antFormItem,
+    form: {
+      ...antFormItem,
+      label: '多行输入',
+      name: 'multi',
+    },
     icon: 'multi',
     title: '多行输入',
-    label: '多行输入',
-    name: 'multi',
     tag: 'a-textarea',
+    slots: [],
     config: {
       defaultValue: {
         value: '',
@@ -259,12 +262,15 @@ antNumberInputComponentType | antMentionsInputComponentType | antTextComponentTy
     },
   },
   {
-    ...antFormItem,
+    form: {
+      ...antFormItem,
+      label: '搜索输入',
+      name: 'search',
+    },
     icon: 'search',
     title: '搜索输入',
-    label: '搜索输入',
-    name: 'search',
     tag: 'a-input-search',
+    slots: [],
     config: {
       ...antInput,
       enterButton: {
@@ -278,12 +284,15 @@ antNumberInputComponentType | antMentionsInputComponentType | antTextComponentTy
     },
   },
   {
-    ...antFormItem,
+    form: {
+      ...antFormItem,
+      label: '密码输入',
+      name: 'password',
+    },
     icon: 'password',
     title: '密码输入',
-    label: '密码输入',
-    name: 'password',
     tag: 'a-input-password',
+    slots: [],
     config: {
       ...antInput,
       visibilityToggle: {
@@ -293,12 +302,15 @@ antNumberInputComponentType | antMentionsInputComponentType | antTextComponentTy
     },
   },
   {
-    ...antFormItem,
+    form: {
+      ...antFormItem,
+      label: '建议输入',
+      name: 'auto',
+    },
     icon: 'auto',
     title: '建议输入',
-    label: '建议输入',
-    name: 'auto',
     tag: 'a-auto-complete',
+    slots: [],
     config: {
       allowClear: {
         value: false,
@@ -359,12 +371,15 @@ antNumberInputComponentType | antMentionsInputComponentType | antTextComponentTy
     },
   },
   {
-    ...antFormItem,
+    form: {
+      ...antFormItem,
+      label: '数字输入',
+      name: 'number',
+    },
     icon: 'number',
     title: '数字输入',
-    label: '数字输入',
-    name: 'number',
     tag: 'a-input-number',
+    slots: [],
     config: {
       autofocus: {
         value: false,
@@ -413,12 +428,15 @@ antNumberInputComponentType | antMentionsInputComponentType | antTextComponentTy
     },
   },
   {
-    ...antFormItem,
+    form: {
+      ...antFormItem,
+      label: '触发输入',
+      name: 'mentions',
+    },
     icon: 'mentions',
     title: '触发输入',
-    label: '触发输入',
-    name: 'mentions',
     tag: 'a-mentions',
+    slots: [],
     config: {
       autofocus: {
         value: false,
@@ -462,14 +480,18 @@ antNumberInputComponentType | antMentionsInputComponentType | antTextComponentTy
       },
     },
   },
-  {
-    ...antFormItem,
-    icon: 'text',
-    title: '富文编辑',
-    label: '富文编辑',
-    name: 'text',
-    config: {},
-  },
+  // {
+  //   form: {
+  //     ...antFormItem,
+  //     label: '富文编辑',
+  //     name: 'text',
+  //   },
+  //   icon: 'text',
+  //   title: '富文编辑',
+  //   tag: 'a-text',
+  //   slots: [],
+  //   config: {},
+  // },
 ];
 
 const selectComponentList: Array<antSelectComponentType | antCascaderComponentType |
@@ -478,12 +500,15 @@ antSwitchComponentType | antSliderComponentType | antDatePickerComponentType |
 antRangePickerComponentType | antTimePickerComponentType | antMonthPickerComponentType |
 antWeekPickerComponentType | antRateComponentType | antUploadComponentType> = [
   {
-    ...antFormItem,
+    form: {
+      ...antFormItem,
+      label: '下拉选择',
+      name: 'select',
+    },
     icon: 'select',
     title: '下拉选择',
-    label: '下拉选择',
-    name: 'select',
     tag: 'a-select',
+    slots: [],
     config: {
       allowClear: {
         value: false,
@@ -628,12 +653,15 @@ antWeekPickerComponentType | antRateComponentType | antUploadComponentType> = [
     },
   },
   {
-    ...antFormItem,
+    form: {
+      ...antFormItem,
+      label: '级联选择',
+      name: 'cascader',
+    },
     icon: 'cascader',
     title: '级联选择',
-    label: '级联选择',
-    name: 'cascader',
     tag: 'a-cascader',
+    slots: [],
     config: {
       allowClear: {
         value: true,
@@ -718,12 +746,15 @@ antWeekPickerComponentType | antRateComponentType | antUploadComponentType> = [
     },
   },
   {
-    ...antFormItem,
+    form: {
+      ...antFormItem,
+      label: '树型选择',
+      name: 'tree',
+    },
     icon: 'tree',
     title: '树型选择',
-    label: '树型选择',
-    name: 'tree',
     tag: 'a-tree-select',
+    slots: [],
     config: {
       allowClear: {
         value: false,
@@ -852,12 +883,15 @@ antWeekPickerComponentType | antRateComponentType | antUploadComponentType> = [
     },
   },
   {
-    ...antFormItem,
+    form: {
+      ...antFormItem,
+      label: '单选框组',
+      name: 'radio',
+    },
     icon: 'radio',
     title: '单选框组',
-    label: '单选框组',
-    name: 'radio',
-    tag: 'a-radio-group',
+    tag: 'a-radio',
+    slots: [],
     config: {
       defaultValue: {
         value: '',
@@ -886,12 +920,15 @@ antWeekPickerComponentType | antRateComponentType | antUploadComponentType> = [
     },
   },
   {
-    ...antFormItem,
+    form: {
+      ...antFormItem,
+      label: '复选框组',
+      name: 'checkbox',
+    },
     icon: 'checkbox',
     title: '复选框组',
-    label: '复选框组',
-    name: 'checkbox',
     tag: 'a-checkbox-group',
+    slots: [],
     config: {
       disabled: {
         value: false,
@@ -912,12 +949,15 @@ antWeekPickerComponentType | antRateComponentType | antUploadComponentType> = [
     },
   },
   {
-    ...antFormItem,
+    form: {
+      ...antFormItem,
+      label: '滑动开关',
+      name: 'switch',
+    },
     icon: 'switch',
     title: '滑动开关',
-    label: '滑动开关',
-    name: 'switch',
     tag: 'a-switch',
+    slots: [],
     config: {
       autofocus: {
         value: false,
@@ -958,12 +998,15 @@ antWeekPickerComponentType | antRateComponentType | antUploadComponentType> = [
     },
   },
   {
-    ...antFormItem,
+    form: {
+      ...antFormItem,
+      label: '滑动输入',
+      name: 'slider',
+    },
     icon: 'slider',
     title: '滑动输入',
-    label: '滑动输入',
-    name: 'slider',
     tag: 'a-slider',
+    slots: [],
     config: {
       autofocus: {
         value: false,
@@ -1032,12 +1075,15 @@ antWeekPickerComponentType | antRateComponentType | antUploadComponentType> = [
     },
   },
   {
-    ...antFormItem,
+    form: {
+      ...antFormItem,
+      label: '日期选择',
+      name: 'date',
+    },
     icon: 'date',
     title: '日期选择',
-    label: '日期选择',
-    name: 'date',
     tag: 'a-date-picker',
+    slots: [],
     config: {
       ...antDate,
       defaultPickerValue: {
@@ -1067,12 +1113,15 @@ antWeekPickerComponentType | antRateComponentType | antUploadComponentType> = [
     },
   },
   {
-    ...antFormItem,
+    form: {
+      ...antFormItem,
+      label: '时间选择',
+      name: 'time',
+    },
     icon: 'time',
     title: '时间选择',
-    label: '时间选择',
-    name: 'time',
     tag: 'a-time-picker',
+    slots: [],
     config: {
       addon: {
         value: null,
@@ -1185,12 +1234,15 @@ antWeekPickerComponentType | antRateComponentType | antUploadComponentType> = [
     },
   },
   {
-    ...antFormItem,
+    form: {
+      ...antFormItem,
+      label: '月份选择',
+      name: 'month',
+    },
     icon: 'month',
     title: '月份选择',
-    label: '月份选择',
-    name: 'month',
     tag: 'a-month-picker',
+    slots: [],
     config: {
       ...antDate,
       defaultPickerValue: {
@@ -1212,12 +1264,15 @@ antWeekPickerComponentType | antRateComponentType | antUploadComponentType> = [
     },
   },
   {
-    ...antFormItem,
+    form: {
+      ...antFormItem,
+      label: '触发输入',
+      name: '周数选择',
+    },
     icon: 'week',
     title: '周数选择',
-    label: '周数选择',
-    name: 'week',
     tag: 'a-week-picker',
+    slots: [],
     config: {
       ...antDate,
       defaultPickerValue: {
@@ -1235,12 +1290,15 @@ antWeekPickerComponentType | antRateComponentType | antUploadComponentType> = [
     },
   },
   {
-    ...antFormItem,
+    form: {
+      ...antFormItem,
+      label: '日期范围',
+      name: 'DateScope',
+    },
     icon: 'DateScope',
     title: '日期范围',
-    label: '日期范围',
-    name: 'DateScope',
     tag: 'a-range-picker',
+    slots: [],
     config: {
       ...antDate,
       defaultPickerValue: {
@@ -1278,12 +1336,15 @@ antWeekPickerComponentType | antRateComponentType | antUploadComponentType> = [
   //   title: '时间范围',
   // },
   {
-    ...antFormItem,
+    form: {
+      ...antFormItem,
+      label: '评分',
+      name: 'rate',
+    },
     icon: 'rate',
     title: '评分',
-    label: '评分',
-    name: 'rate',
     tag: 'a-rate',
+    slots: [],
     config: {
       allowClear: {
         value: true,
@@ -1320,12 +1381,15 @@ antWeekPickerComponentType | antRateComponentType | antUploadComponentType> = [
     },
   },
   {
-    ...antFormItem,
+    form: {
+      ...antFormItem,
+      label: '上传',
+      name: 'upload',
+    },
     icon: 'upload',
     title: '上传',
-    label: '上传',
-    name: 'upload',
     tag: 'a-upload',
+    slots: [],
     config: {
       accept: {
         value: '',

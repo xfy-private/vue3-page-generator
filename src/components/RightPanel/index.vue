@@ -1,3 +1,8 @@
+<!--
+  @author：longzinziyan@gmail.com
+  @desc：右边表单与控件属性面板
+  @date：2021-08-17 22:10:31
+-->
 <template>
   <a-tabs defaultActiveKey="2">
     <a-tab-pane key="1" tab="组件属性">

@@ -6,9 +6,15 @@
 
 import { defineComponent, h, PropType } from 'vue';
 
+import { antTagType } from '@/types/config';
+
 export default defineComponent({
   props: {
-    conf: {
+    tag: {
+      type: String as PropType<antTagType>,
+      required: true,
+    },
+    config: {
       type: Object as PropType<{
         [key: string]: unknown
       }>,
@@ -16,7 +22,9 @@ export default defineComponent({
     },
   },
   render() {
-    console.log(this.conf.tag);
-    return h(this.conf.tag as string);
+    console.log(this.tag);
+    return h(this.tag, {
+      ...this.config,
+    });
   },
 });

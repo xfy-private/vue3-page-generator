@@ -1,3 +1,8 @@
+<!--
+  @author：longzinziyan@gmail.com
+  @desc：Svg图标组件
+  @date：2021-08-10 22:14:52
+-->
 <template>
   <div v-if="isExternal" :style="styleExternalIcon" class="svg-external-icon svg-icon">
     <slot></slot>
