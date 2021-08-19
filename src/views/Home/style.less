@@ -119,13 +119,33 @@
           position: relative;
           height: 100%;
           background-color: rgba(239, 239, 239, 0.6);
+
+          form {
+            height: 100%;
+          }
+
+          .drawing-components {
+            position: relative;
+            height: 100%;
+          }
+
+          .empty-info{
+            position: absolute;
+            top: 50%;
+            right: 0;
+            left: 0;
+            font-size: 1.3rem;
+            letter-spacing: 4px;
+            color: #ccb1ea;
+            text-align: center;
+            transform: translateY(-50%);
+          }
         }
       }
     }
   }
 
   .right {
-    padding: 0 0.5rem;
     border-left: 1px solid #f1e8e8;
   }
 }

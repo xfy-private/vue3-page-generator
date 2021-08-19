@@ -21,7 +21,7 @@ module.exports = {
   ],
   overrides: [
     {
-      files: ['./vue.config.js', './src/assets/icons/index.ts'],
+      files: ['./vue.config.js'],
       rules: {
         'new-cap': 'off',
         'no-param-reassign': 'off',

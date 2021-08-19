@@ -4,12 +4,8 @@ import {
 import { MentionsProps } from 'ant-design-vue';
 
 type colType = {
-  flex: string|number;
-  offset: 0;
-  order: 0;
-  pull: 0;
-  push: 0;
-  span: 0;
+  offset: number;
+  span: number;
 };
 
 type baseFormType = {
@@ -18,7 +14,7 @@ type baseFormType = {
   rules: string;
   ref: string;
   disabled: boolean;
-  size: 'large' | 'default' | 'small';
+  gutter: [number, number]
 };
 
 type baseComponentType = {
@@ -30,22 +26,8 @@ type antFormType = {
   hideRequiredMark: boolean;
   labelAlign: 'left' | 'right';
   layout: 'horizontal' | 'vertical' | 'inline';
-  labelCol: colType | {
-    xs?: colType;
-    sm?: colType;
-    md?: colType;
-    lg?: colType;
-    xl?: colType;
-    xxl?: colType;
-  };
-  wrapperCol: colType | {
-    xs?: colType;
-    sm?: colType;
-    md?: colType;
-    lg?: colType;
-    xl?: colType;
-    xxl?: colType;
-  };
+  labelCol: colType;
+  wrapperCol: colType;
   colon: boolean;
   validateOnRuleChange: boolean;
   scrollToFirstError: boolean | {
@@ -66,36 +48,26 @@ type baseFormItemType = {
 
 type antFormItemType = {
   name: string;
+  tag: 'a-auto-complete' | 'a-cascader' | 'a-checkbox-group' | 'a-checkbox' | 'a-date-picker' | 'a-month-picker' |
+  'a-range-picker' | 'a-week-picker' | 'a-input' | 'a-input-password' | 'a-textarea' | 'a-input-search' |
+  'a-input-number' | 'a-mentions' | 'a-radio-group' | 'a-radio' | 'a-rate' | 'a-select' | 'a-slider' | 'a-switch' |
+  'a-time-picker' | 'a-tree-select' | 'a-upload' | 'a-row' | null
   autoLink: boolean;
   colon: boolean;
   extra: string | Slot;
   hasFeedback: boolean;
   help: string | Slot;
   htmlFor: string;
-  labelCol: colType | {
-    xs?: colType;
-    sm?: colType;
-    md?: colType;
-    lg?: colType;
-    xl?: colType;
-    xxl?: colType;
-  };
+  labelCol: colType;
   labelAlign: 'left' | 'right';
   validateStatus: 'success' | 'warning' | 'error' | 'validating' | '';
-  wrapperCol: colType | {
-    xs?: colType;
-    sm?: colType;
-    md?: colType;
-    lg?: colType;
-    xl?: colType;
-    xxl?: colType;
-  };
+  wrapperCol: colType;
   validateFirst: boolean;
   validateTrigger: 'blur' | 'change' | ['blur', 'change'];
 } & baseFormItemType;
 
 type baseItemType = {
-  type: 'input' | 'select' | 'switch' | 'number' | 'radio' | 'event'
+  type: 'input' | 'select' | 'switch' | 'number' | 'radio' | 'event';
 }
 
 type antInputType = {
@@ -431,6 +403,79 @@ type antSelectComponentType = {
     } & baseItemType;
     open: {
       value: boolean
+    } & baseItemType;
+  };
+} & antFormItemType;
+
+type antCascaderComponentType = {
+  config: {
+    allowClear: {
+      value: boolean
+    } & baseItemType;
+    autofocus: {
+      value: boolean
+    } & baseItemType;
+    changeOnSelect: {
+      value: boolean
+    } & baseItemType;
+    defaultValue: {
+      value: string[] | number[]
+    } & baseItemType;
+    disabled: {
+      value: boolean
+    } & baseItemType;
+    displayRender: {
+      value: ((_arg: {labels: unknown, selectedOptions: unknown}) => VNode) | Slot | null
+    } & baseItemType;
+    expandTrigger: {
+      value: 'click' | 'hover'
+    } & baseItemType;
+    fieldNames: {
+      value: { label: 'label', value: 'value', children: 'children' } | null
+    } & baseItemType;
+    getPopupContainer: {
+      value: ((_triggerNode: VNode)=> HTMLElement) | null
+    } & baseItemType;
+    loadData: {
+      value: ((_selectedOptions: unknown) => void) | null
+    } & baseItemType;
+    notFoundContent: {
+      value: string
+    } & baseItemType;
+    options: {
+      value: unknown
+    } & baseItemType;
+    placeholder: {
+      value: string
+    } & baseItemType;
+    popupClassName: {
+      value: string
+    } & baseItemType;
+    popupStyle: {
+      value: {
+        [key: string]: number | string;
+      }
+    } & baseItemType;
+    popupPlacement: {
+      value: 'bottomLeft' | 'bottomRight' | 'topLeft' | 'topRight'
+    } & baseItemType;
+    popupVisible: {
+      value: boolean
+    } & baseItemType;
+    showSearch: {
+      value: boolean | {
+        filter: ((_inputValue: unknown, _path: unknown) => boolean) | null;
+        limit: number | boolean;
+        matchInputWidth: boolean;
+        render: ((_arg: {inputValue: unknown, path: unknown}) => VNode) | null;
+        sort: ((_a: unknown, _b: unknown, _inputValue: unknown) => unknown) | null;
+      }
+    } & baseItemType;
+    size: {
+      value: 'large' | 'default' | 'small'
+    } & baseItemType;
+    suffixIcon: {
+      value: string | VNode | Slot
     } & baseItemType;
   };
 } & antFormItemType;
@@ -1006,7 +1051,12 @@ type antUploadComponentType = {
 type RowComponentType = {
 } & antFormItemType;
 
+type componentItemType = {
+  [key: string]: unknown
+}
+
 export {
+  componentItemType,
   antFormType,
   antFormItemType,
   antInputType,
@@ -1019,6 +1069,7 @@ export {
   antMentionsInputComponentType,
   antTextComponentType,
   antSelectComponentType,
+  antCascaderComponentType,
   antTreeSelectComponentType,
   antRadioGroupComponentType,
   antCheckboxComponentType,

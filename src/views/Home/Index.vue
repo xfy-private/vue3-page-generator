@@ -9,9 +9,12 @@
               class="ant-row ant-row-space-between components-draggable"
               v-model="item.componentList"
               handle=".component-item"
+              :group="{ name: 'componentsGroup', pull: 'clone', put: false }"
               :sort="false"
-              item-key="id"
-              :component-data="{ name: 'fade' }"
+              itemKey="id"
+              :componentData="{ name: 'fade' }"
+              :clone="clone"
+              @end="end"
             >
               <template #item="{ element }">
                 <a-col class="component-item" :span="11">
@@ -43,22 +46,45 @@
       <div class="center-bottom">
         <div class="window">
           <svg-icon name="forward" class="turn" size="1.6" />
-          <div class="content">
-            <a-row></a-row>
-          </div>
+          <Row :gutter="formConfig.gutter" :layout="formConfig.layout">
+            <a-form
+              :hideRequiredMark="formConfig.hideRequiredMark"
+              :labelAlign="formConfig.labelAlign"
+              :layout="formConfig.layout"
+              :labelCol="formConfig.labelCol"
+              :wrapperCol="formConfig.wrapperCol"
+              :colon="formConfig.colon"
+              :validateOnRuleChange="formConfig.validateOnRuleChange"
+              :scrollToFirstError="formConfig.scrollToFirstError"
+              :name="formConfig.name"
+              :validateTrigger="formConfig.validateTrigger"
+            >
+              <draggable
+                class="drawing-components"
+                v-model="drawingComponentList"
+                :animation="340"
+                group="componentsGroup"
+                itemKey="id"
+              >
+                <template #item="{ element }">
+                  <DraggableItem :item="element"></DraggableItem>
+                </template>
+              </draggable>
+              <div v-show="!drawingComponentList.length" class="empty-info">从左侧拖入或点选组件进行表单设计</div>
+            </a-form>
+          </Row>
         </div>
       </div>
     </a-col>
     <a-col class="right" :xxl="4" :xl="4" :lg="5">
       <RightPanel :form="formConfig" />
-      <a-button type="primary" @click="submit">提交</a-button>
     </a-col>
   </a-row>
 </template>
 
 <script lang="ts">
 import {
-  defineAsyncComponent, defineComponent, ref, watch,
+  defineAsyncComponent, defineComponent, ref,
 } from 'vue';
 import draggable from 'vuedraggable';
 
@@ -69,20 +95,30 @@ export default defineComponent({
   components: {
     draggable,
     RightPanel: defineAsyncComponent(() => import('@/components/RightPanel')),
+    Row: defineAsyncComponent(() => import('@/components/Row')),
+    DraggableItem: defineAsyncComponent(() => import('@/components/DraggableItem')),
   },
   setup() {
     const leftComponents = ref(componentList);
+    const drawingComponentList = ref([]);
     const formConfig = ref(antForm);
-    function submit() {
-      console.log(formConfig.value);
+
+    function clone(origin: unknown) {
+      console.log(origin);
+      return origin;
     }
-    watch(formConfig.value, () => {
-      console.log(formConfig.value);
-    });
+    function end(obj: {
+      from: string,
+      to: string
+    }) {
+      console.log(obj);
+    }
     return {
       leftComponents,
+      drawingComponentList,
       formConfig,
-      submit,
+      clone,
+      end,
     };
   },
 });

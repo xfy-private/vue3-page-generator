@@ -1,5 +1,5 @@
 <template>
-  <a-tabs>
+  <a-tabs defaultActiveKey="2">
     <a-tab-pane key="1" tab="组件属性">
       <a-form :labelCol="labelCol" :wrapperCol="wrapperCol">
         <a-form-item label="标题">
@@ -24,6 +24,79 @@
         <a-form-item label="校验模型">
           <a-input v-model:value="formConfig.rules" />
         </a-form-item>
+        <a-form-item label="标签对齐">
+          <a-radio-group v-model:value="formConfig.labelAlign" button-style="solid">
+            <a-radio-button value="left">左对齐</a-radio-button>
+            <a-radio-button value="right">右对齐</a-radio-button>
+          </a-radio-group>
+        </a-form-item>
+        <a-form-item label="表单布局">
+          <a-radio-group v-model:value="formConfig.layout" button-style="solid">
+            <a-radio-button value="horizontal">水平</a-radio-button>
+            <a-radio-button value="vertical">垂直</a-radio-button>
+            <a-radio-button value="inline">排列</a-radio-button>
+          </a-radio-group>
+        </a-form-item>
+        <a-form-item label="校验规则">
+          <a-radio-group v-model:value="formConfig.validateTrigger" button-style="solid">
+            <a-radio-button value="blur">blur</a-radio-button>
+            <a-radio-button value="change">change</a-radio-button>
+            <a-radio-button value="['blur', 'change']">共同</a-radio-button>
+          </a-radio-group>
+        </a-form-item>
+        <a-form-item label="标签布局">
+          <a-input-group compact>
+            <a-select style="width: 65%;" v-model:value="labelColSelect">
+              <a-select-option value="span">栅格占位格数</a-select-option>
+              <a-select-option value="offset">栅格左侧间隔</a-select-option>
+            </a-select>
+            <a-input-number
+              style="width: 35%;"
+              v-model:value="formConfig.labelCol[labelColSelect]"
+              :min="0"
+              :max="24"
+            ></a-input-number>
+          </a-input-group>
+        </a-form-item>
+        <a-form-item label="输入布局">
+          <a-input-group compact>
+            <a-select style="width: 65%;" v-model:value="wrapperColSelect">
+              <a-select-option value="span">栅格占位格数</a-select-option>
+              <a-select-option value="offset">栅格左侧间隔</a-select-option>
+            </a-select>
+            <a-input-number
+              style="width: 35%;"
+              v-model:value="formConfig.wrapperCol[wrapperColSelect]"
+              :min="0"
+              :max="24"
+            ></a-input-number>
+          </a-input-group>
+        </a-form-item>
+        <a-form-item label="栅格间隔" v-if="formConfig.layout === 'inline'">
+          <a-input-group compact>
+            <a-select style="width: 65%;" v-model:value="gutterSelect">
+              <a-select-option :value="0">水平间距</a-select-option>
+              <a-select-option :value="1">垂直间距</a-select-option>
+            </a-select>
+            <a-input-number
+              style="width: 35%;"
+              v-model:value="formConfig.gutter[gutterSelect]"
+              :min="0"
+            ></a-input-number>
+          </a-input-group>
+        </a-form-item>
+        <a-form-item label="全部必填">
+          <a-switch v-model:checked="formConfig.hideRequiredMark" />
+        </a-form-item>
+        <a-form-item label="显示冒号">
+          <a-switch v-model:checked="formConfig.colon" />
+        </a-form-item>
+        <a-form-item label="触发校验">
+          <a-switch v-model:checked="formConfig.validateOnRuleChange" />
+        </a-form-item>
+        <a-form-item label="禁用表单">
+          <a-switch v-model:checked="formConfig.disabled" />
+        </a-form-item>
       </a-form>
     </a-tab-pane>
   </a-tabs>
@@ -44,10 +117,16 @@ export default defineComponent({
   },
   setup(props) {
     const formConfig = ref(props.form);
+    const labelColSelect = ref<'span' | 'offset'>('span');
+    const wrapperColSelect = ref<'span' | 'offset'>('span');
+    const gutterSelect = ref<0 | 1>(0);
     return {
-      labelCol: { span: 6 },
-      wrapperCol: { span: 18 },
+      labelCol: { span: 8 },
+      wrapperCol: { span: 16 },
       formConfig,
+      labelColSelect,
+      wrapperColSelect,
+      gutterSelect,
     };
   },
 });
