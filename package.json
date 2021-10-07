@@ -1,9 +1,9 @@
 {
-  "name": "v-page-generator",
+  "name": "vue3-page-generator",
   "version": "0.0.1",
   "description": "Vue3.0 动态页面设计生成器",
   "main": "index.js",
-  "repository": "https://github.com/xfy520/v-page-generator.git",
+  "repository": "https://github.com/xfy520/vue3-page-generator.git",
   "author": "xfy520 <longzinziyan@gmail.com>",
   "license": "MIT",
   "private": false,
@@ -64,11 +64,11 @@
     }
   },
   "bugs": {
-    "url": "https://github.com/xfy520/v-page-generator/issues"
+    "url": "https://github.com/xfy520/vue3-page-generator/issues"
   },
-  "homepage": "https://github.com/xfy520/v-page-generator",
+  "homepage": "https://github.com/xfy520/vue3-page-generator",
   "changelog": {
-    "bugsUrl": "https://github.com/xfy520/v-page-generator",
+    "bugsUrl": "https://github.com/xfy520/vue3-page-generator",
     "emojis": true,
     "authorName": false,
     "authorEmail": false
