@@ -8,7 +8,7 @@
     <a-col class="left" :xxl="4" :xl="5" :lg="6">
       <a-tabs>
         <a-tab-pane key="1" tab="Ant Design Vue">
-          <template v-for="(item, index) in leftComponents" :key="index">
+          <template v-for="(item) in leftComponents" :key="item">
             <svg-icon class="icon-title" :name="item.icon">{{ item.title }}</svg-icon>
             <draggable
               class="ant-row ant-row-space-between components-draggable"
@@ -82,18 +82,21 @@
       </div>
     </a-col>
     <a-col class="right" :xxl="4" :xl="4" :lg="5">
-      <RightPanel :form="formConfig" />
+      <RightPanel :form="formConfig" :activeData="activeData" />
     </a-col>
   </a-row>
 </template>
 
 <script lang="ts">
 import {
-  defineAsyncComponent, defineComponent, ref,
+  defineAsyncComponent, defineComponent, ref, watch,
 } from 'vue';
+import { debounce } from 'throttle-debounce';
 import draggable from 'vuedraggable';
 
 import { componentList, antForm } from '@/utils/config';
+import { antComponentType, antTagType } from '@/types/config';
+import { getFormId, saveFormId } from '@/utils/data';
 
 export default defineComponent({
   name: 'Home',
@@ -101,27 +104,53 @@ export default defineComponent({
     draggable,
     RightPanel: defineAsyncComponent(() => import('@/components/RightPanel')),
     Row: defineAsyncComponent(() => import('@/components/Row')),
-    DraggableItem: defineAsyncComponent(() => import('@/components/DraggableItem/index.vue')),
+    DraggableItem: defineAsyncComponent(() => import('@/components/DraggableItem')),
   },
   setup() {
     const leftComponents = ref(componentList);
     const drawingComponentList = ref([]);
     const formConfig = ref(antForm);
+    const formId = ref(getFormId());
+    const saveFormIdDebounce = debounce(200, saveFormId);
+    const activeData = ref<antComponentType>({});
 
-    function clone(origin: unknown) {
-      console.log(origin);
-      return origin;
+    watch(formId, (newVal: number) => {
+      saveFormIdDebounce(newVal);
+    }, {
+      immediate: true,
+    });
+
+    function clone(origin: antComponentType) {
+      const tag = ref<antTagType>(origin.tag);
+      const config = ref(origin.config);
+      const form = ref(origin.form);
+      const slots = ref(origin.slots);
+      if (origin.form.layout === 'col') {
+        formId.value += formId.value;
+        config.value.vModel = `field${formId.value}`;
+      }
+      activeData.value = {
+        tag,
+        config,
+        form,
+        slots,
+      } as unknown as antComponentType;
+      console.log('===========================');
+      return activeData.value;
     }
     function end(obj: {
       from: string,
       to: string
     }) {
-      console.log(obj);
+      if (obj.from !== obj.to) {
+        console.log(obj);
+      }
     }
     return {
       leftComponents,
       drawingComponentList,
       formConfig,
+      activeData,
       clone,
       end,
     };

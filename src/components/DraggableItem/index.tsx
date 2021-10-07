@@ -1,19 +1,15 @@
-<!--
-  @author：longzinziyan@gmail.com
-  @desc：单个拖拽节点
-  @date：2021-08-19 22:09:49
--->
-<script lang="tsx">
-
-import { defineComponent, h, PropType } from 'vue';
-import draggable from 'vuedraggable';
+import { defineComponent, PropType } from 'vue';
+import { FormItem } from 'ant-design-vue';
 import Render from '@/components/Render';
 import { antComponentType } from '@/types/config';
 
+import './style.less';
+
+
 export default defineComponent({
   components: {
-    draggable,
-    Render,
+    FormItem,
+    Render
   },
   props: {
     item: {
@@ -26,14 +22,11 @@ export default defineComponent({
     },
   },
   render() {
+    console.log(this.item)
     return (
-      <div></div>
+      <FormItem label={this.item.form.label}>
+        <Render tag={this.item.tag} config={this.item.config}></Render>
+      </FormItem>
     )
   }
 });
-
-</script>
-
-<style lang="less">
-@import url(style.less);
-</style>

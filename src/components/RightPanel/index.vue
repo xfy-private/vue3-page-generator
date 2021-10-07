@@ -7,9 +7,13 @@
   <a-tabs defaultActiveKey="2">
     <a-tab-pane key="1" tab="组件属性">
       <a-form :labelCol="labelCol" :wrapperCol="wrapperCol">
-        <a-form-item label="标题">
-          <a-input />
+        {{ activeData }}
+        <!-- <a-form-item label="标题">
+          <a-input v-model:value="activeDataConfig.form.label" />
         </a-form-item>
+        <a-form-item label="字段">
+          <a-input v-model:value="activeDataConfig.config.vModel" />
+        </a-form-item>-->
         <a-form-item label="组件类型">
           <a-select>
             <a-select-option value="1">单行输入</a-select-option>
@@ -108,9 +112,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, PropType } from 'vue';
+import {
+  defineComponent, ref, PropType, watch,
+} from 'vue';
 
-import { antFormType } from '@/types/config';
+import { antFormType, antComponentType } from '@/types/config';
 
 export default defineComponent({
   name: 'RightPanel',
@@ -119,12 +125,21 @@ export default defineComponent({
       type: Object as PropType<antFormType>,
       required: true,
     },
+    activeData: {
+      type: Object as PropType<antComponentType>,
+      required: true,
+    },
   },
   setup(props) {
+    console.log(props.activeData);
     const formConfig = ref(props.form);
+    // const activeDataConfig = ref(props.activeData);
     const labelColSelect = ref<'span' | 'offset'>('span');
     const wrapperColSelect = ref<'span' | 'offset'>('span');
     const gutterSelect = ref<0 | 1>(0);
+    watch(() => props.activeData, (newVal) => {
+      console.log('-----------', newVal);
+    });
     return {
       labelCol: { span: 8 },
       wrapperCol: { span: 16 },
@@ -132,6 +147,7 @@ export default defineComponent({
       labelColSelect,
       wrapperColSelect,
       gutterSelect,
+      // activeDataConfig,
     };
   },
 });

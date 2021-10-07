@@ -8,6 +8,9 @@ module.exports = {
     parser: '@typescript-eslint/parser',
     ecmaVersion: 2020,
     sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+    },
   },
   extends: [
     'plugin:@typescript-eslint/recommended',
@@ -19,20 +22,11 @@ module.exports = {
     '@typescript-eslint',
     'vue',
   ],
-  overrides: [
-    {
-      files: ['./vue.config.js'],
-      rules: {
-        'new-cap': 'off',
-        'no-param-reassign': 'off',
-        '@typescript-eslint/no-explicit-any': 'off',
-        '@typescript-eslint/no-var-requires': 'off',
-      },
-    },
-  ],
   rules: {
     'import/extensions': 'off',
     'import/no-unresolved': 'off',
+    'vue/comment-directive': 'off',
+    'import/no-extraneous-dependencies': 'off',
     'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',

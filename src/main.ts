@@ -4,9 +4,10 @@ import SvgIcon from '@/icons/SvgIcon';
 import App from './App.vue';
 import router from './router';
 import VueI18n from './language';
+import 'virtual:svg-icons-register';
 
 if (process.env.NODE_ENV !== 'production') {
-  require('ant-design-vue/dist/antd.css');
+  import('ant-design-vue/dist/antd.css');
 }
 
 const app = createApp(App);

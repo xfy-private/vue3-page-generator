@@ -4,11 +4,12 @@
  * @date：2021-08-19 18:37:04
  */
 
-import { defineComponent, h, PropType } from 'vue';
+import { defineComponent, createVNode, PropType, resolveComponent } from 'vue';
 
 import { antTagType } from '@/types/config';
 
 export default defineComponent({
+  name: 'Render',
   props: {
     tag: {
       type: String as PropType<antTagType>,
@@ -22,9 +23,8 @@ export default defineComponent({
     },
   },
   render() {
-    console.log(this.tag);
-    return h(this.tag, {
-      ...this.config,
-    });
+    return createVNode(resolveComponent(this.tag), {
+      ...this.config
+    })
   },
 });

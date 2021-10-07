@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   columns: {
     remark: '备注',
     protocol: '协议',

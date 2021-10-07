@@ -1,42 +1,39 @@
 {
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue"
+  ],
   "compilerOptions": {
-    "strict": true,
-    "sourceMap": true,
     "jsx": "preserve",
-    "target": "es6",
+    "target": "esnext",
     "module": "esnext",
-    "noImplicitAny": true,
-    "importHelpers": true,
-    "noImplicitThis": true,
-    "esModuleInterop": true,
-    "strictNullChecks": true,
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "baseUrl": ".",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "lib": [
+      "esnext",
+      "dom"
+    ],
     "types": [
-      "webpack-env",
+      "vite/client",
       "node"
     ],
+    "baseUrl": ".",
     "paths": {
       "@/*": [
         "src/*"
       ]
     },
-    "lib": [
-      "esnext",
-      "dom",
-      "dom.iterable",
-      "scripthost"
+    "strict": true,
+    "noUnusedLocals": true,
+    "noImplicitReturns": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "plugins": [
+      {
+        "name": "@vuedx/typescript-plugin-vue"
+      }
     ]
-  },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.d.ts",
-    "src/**/*.vue",
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  }
 }

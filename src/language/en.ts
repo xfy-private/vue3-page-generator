@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   columns: {
     remark: 'remark',
     protocol: 'protocol',

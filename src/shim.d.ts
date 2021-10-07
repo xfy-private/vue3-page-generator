@@ -4,10 +4,3 @@ declare module '*.vue' {
   const Component: ReturnType<typeof defineComponent> | FunctionalComponent;
   export default Component;
 }
-
-declare module '*.less' {
-  const less: {
-    [key: string]: string | number
-  };
-  export default less;
-}
